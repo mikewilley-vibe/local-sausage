@@ -9,6 +9,7 @@ interface Market {
   distance?: number;
   type: string;
   website?: string;
+  rating?: number;
 }
 
 export default function MarketsPage() {
@@ -217,31 +218,42 @@ export default function MarketsPage() {
 
         {/* Markets Grid */}
         {markets.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
             {markets.map((market, idx) => (
-              <div key={idx} className="bg-white rounded-lg shadow p-6">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-bold text-gray-800">{market.name}</h3>
-                  <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
-                    {market.type}
-                  </span>
+              <div key={idx} className="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition">
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <h3 className="text-lg font-bold text-green-700">{market.name}</h3>
+                    <p className="text-gray-600 text-sm mt-1">{market.address}</p>
+                  </div>
+                  {market.rating && (
+                    <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold whitespace-nowrap ml-2">
+                      ⭐ {market.rating.toFixed(1)}
+                    </span>
+                  )}
                 </div>
-                <p className="text-gray-600 text-sm mb-3">{market.address}</p>
-                {market.distance && (
-                  <p className="text-gray-500 text-sm mb-3">
-                    📍 {market.distance.toFixed(1)} miles away
-                  </p>
-                )}
-                {market.website && (
-                  <a
-                    href={market.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-600 hover:text-green-800 text-sm font-medium"
-                  >
-                    Visit Website →
-                  </a>
-                )}
+                <div className="flex justify-between items-center flex-wrap gap-3">
+                  <div className="flex items-center gap-3">
+                    <span className="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
+                      {market.type?.replace('_', ' ').toUpperCase()}
+                    </span>
+                    {market.distance && (
+                      <span className="text-gray-500 text-sm">
+                        📍 {market.distance.toFixed(1)} miles
+                      </span>
+                    )}
+                  </div>
+                  {market.website && (
+                    <a
+                      href={market.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-green-600 hover:text-green-800 font-semibold"
+                    >
+                      Visit →
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
           </div>
