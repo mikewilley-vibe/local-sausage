@@ -18,7 +18,8 @@ def parse_bbox(bbox_str: str) -> Tuple[float, float, float, float]:
     parts = bbox_str.split(',')
     if len(parts) != 4:
         raise ValueError("bbox must be in format: minx,miny,maxx,maxy")
-    return tuple(float(p) for p in parts)
+    floats = [float(p) for p in parts]
+    return (floats[0], floats[1], floats[2], floats[3])
 
 
 def build_zone_grid(
