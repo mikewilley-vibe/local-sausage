@@ -1,0 +1,4 @@
+{
+  "include": ["scripts/**/*.py"],
+  "exclude": ["node_modules", ".venv", ".next", "seasonal-sous-chef"]
+}
