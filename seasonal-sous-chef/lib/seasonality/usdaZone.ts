@@ -1,5 +1,5 @@
-import zones from "../../data/usda/zones_by_lat_lng.json";
-import produce from "../../data/seasonality/produce_by_zone_month.json";
+import zones from "@/data/usda/zones_by_lat_lng.json";
+import produce from "@/data/seasonality/produce_by_zone_month.json";
 
 function lookupZone(
   lat: number,

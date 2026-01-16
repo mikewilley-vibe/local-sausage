@@ -1,5 +1,5 @@
 import { getUsdaZoneSeasonality } from "./usdaZone";
-import regionMonth from "../../data/seasonality/produce_by_region_month.json";
+import regionMonth from "@/data/seasonality/produce_by_region_month.json";
 
 export type SeasonalityInput = {
   month: number;

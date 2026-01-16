@@ -15,7 +15,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["seasonal-sous-chef/*"]
+      "@/*": ["./*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"]
