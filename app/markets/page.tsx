@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 interface Market {
   name: string;
@@ -103,6 +104,9 @@ export default function MarketsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-emerald-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
+        <Link href="/" className="inline-block mb-6 px-4 py-2 text-green-600 hover:text-green-700 font-semibold">
+          ← Back to Seasonal Sous Chef
+        </Link>
         <h1 className="text-4xl font-bold text-center mb-2 text-green-700">🌾 Local Markets</h1>
         <p className="text-center text-gray-600 mb-8">Find farmers markets and local produce near you</p>
 

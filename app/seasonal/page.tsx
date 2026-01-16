@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function SeasonalPage() {
   const [searchMode, setSearchMode] = useState<'region' | 'coordinates'>('coordinates');
@@ -88,6 +89,9 @@ export default function SeasonalPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-blue-50 py-12 px-4">
       <div className="max-w-2xl mx-auto">
+        <Link href="/" className="inline-block mb-6 px-4 py-2 text-green-600 hover:text-green-700 font-semibold">
+          ← Back to Seasonal Sous Chef
+        </Link>
         <h1 className="text-4xl font-bold text-center mb-2 text-green-700">🍃 What's in Season?</h1>
         <p className="text-center text-gray-600 mb-8">Find seasonal produce by region and month</p>
 
