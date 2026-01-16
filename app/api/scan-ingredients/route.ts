@@ -3,6 +3,13 @@ import { openai } from "@/lib/openai";
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.OPENAI_API_KEY) {
+      return NextResponse.json(
+        { error: "OpenAI API key not configured. Please set OPENAI_API_KEY environment variable." },
+        { status: 500 }
+      );
+    }
+
     const formData = await req.formData();
     const images = formData.getAll("image_0");
 
@@ -60,7 +67,7 @@ List each ingredient as a simple lowercase name. Be specific but concise. Includ
 
     // Call OpenAI with vision
     const response = await openai.chat.completions.create({
-      model: "gpt-4-vision",
+      model: "gpt-4-turbo",
       messages: [
         {
           role: "user",
