@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SUGGESTED_INGREDIENTS = [
   'chicken', 'beef', 'pork', 'salmon', 'shrimp', 'tofu',
@@ -28,6 +28,23 @@ export default function RecipesPage() {
   const [error, setError] = useState('');
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
   const [scannedIngredients, setScannedIngredients] = useState<string[]>([]);
+
+  // Load staples from localStorage on mount
+  useEffect(() => {
+    const savedStaples = localStorage.getItem('staples');
+    if (savedStaples) {
+      try {
+        setStaples(JSON.parse(savedStaples));
+      } catch (e) {
+        setStaples(DEFAULT_STAPLES);
+      }
+    }
+  }, []);
+
+  // Save staples to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('staples', JSON.stringify(staples));
+  }, [staples]);
 
   const suggestedIngredients = SUGGESTED_INGREDIENTS.filter(
     ing => !inSeason.includes(ing) && ing.toLowerCase().includes(newIngredient.toLowerCase())
