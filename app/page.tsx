@@ -21,7 +21,7 @@ export default function Home() {
           <Link href="/recipes">
             <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg hover:scale-105 transition-all cursor-pointer">
               <h2 className="text-xl font-semibold mb-2">🍳 Recipes</h2>
-              <p className="text-gray-600 mb-4">AI-generated recipes from seasonal ingredients</p>
+              <p className="text-gray-600 mb-4">Find recipes using your ingredients</p>
               <span className="text-orange-600 font-semibold hover:text-orange-800">Explore →</span>
             </div>
           </Link>
