@@ -8,7 +8,7 @@ export default function RecipesPage() {
   const [inSeason, setInSeason] = useState<string[]>(['tomatoes', 'basil', 'zucchini']);
   const [newIngredient, setNewIngredient] = useState('');
   const [loading, setLoading] = useState(false);
-  const [recipe, setRecipe] = useState('');
+  const [recipes, setRecipes] = useState<any[]>([]);
   const [error, setError] = useState('');
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
   const [scannedIngredients, setScannedIngredients] = useState<string[]>([]);
@@ -87,7 +87,7 @@ export default function RecipesPage() {
 
     setLoading(true);
     setError('');
-    setRecipe('');
+    setRecipes([]);
 
     try {
       const response = await fetch('/api/recipes', {
@@ -105,13 +105,13 @@ export default function RecipesPage() {
 
       const data = await response.json();
       
-      if (response.ok) {
-        setRecipe(data.recipe || data.content || JSON.stringify(data));
+      if (response.ok && data.recipes) {
+        setRecipes(data.recipes);
       } else {
-        setError(data.error || 'Failed to generate recipe');
+        setError(data.error || 'Failed to generate recipes');
       }
     } catch (err) {
-      setError('Error generating recipe. Make sure OpenAI API key is configured.');
+      setError('Error generating recipes. Make sure OpenAI API key is configured.');
     } finally {
       setLoading(false);
     }
@@ -297,12 +297,71 @@ export default function RecipesPage() {
           </div>
         )}
 
-        {recipe && (
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">Your Recipe</h2>
-            <div className="prose prose-sm max-w-none text-gray-700 whitespace-pre-wrap">
-              {recipe}
-            </div>
+        {recipes.length > 0 && (
+          <div className="space-y-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">🍳 Your Recipes</h2>
+            {recipes.map((recipe, idx) => (
+              <div key={idx} className="bg-white rounded-lg shadow-lg p-8 border-l-4 border-orange-500">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-orange-700 mb-2">{recipe.title}</h3>
+                  <p className="text-gray-600 font-medium">⏱️ {recipe.timeMinutes} minutes</p>
+                </div>
+
+                <div className="mb-6">
+                  <h4 className="text-lg font-bold text-gray-800 mb-3">📋 Ingredients</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    {recipe.ingredients?.map((ing: string, i: number) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-orange-600 font-bold mt-0.5">•</span>
+                        <span>{ing}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mb-6">
+                  <h4 className="text-lg font-bold text-gray-800 mb-3">👨‍🍳 Steps</h4>
+                  <ol className="space-y-3 text-gray-700">
+                    {recipe.steps?.map((step: string, i: number) => (
+                      <li key={i} className="flex gap-3">
+                        <span className="font-bold text-orange-600 flex-shrink-0 w-6 h-6 flex items-center justify-center bg-orange-100 rounded-full">
+                          {i + 1}
+                        </span>
+                        <span className="pt-0.5">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
+                {recipe.substitutions && recipe.substitutions.length > 0 && (
+                  <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h4 className="font-bold text-blue-900 mb-2">🔄 Substitutions</h4>
+                    <ul className="space-y-1 text-blue-900 text-sm">
+                      {recipe.substitutions.map((sub: string, i: number) => (
+                        <li key={i} className="flex gap-2">
+                          <span className="text-blue-600">•</span>
+                          <span>{sub}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {recipe.optionalShoppingAddOns && recipe.optionalShoppingAddOns.length > 0 && (
+                  <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+                    <h4 className="font-bold text-green-900 mb-2">🛒 Optional Add-ons</h4>
+                    <ul className="space-y-1 text-green-900 text-sm">
+                      {recipe.optionalShoppingAddOns.map((addon: string, i: number) => (
+                        <li key={i} className="flex gap-2">
+                          <span className="text-green-600">•</span>
+                          <span>{addon}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         )}
       </div>
