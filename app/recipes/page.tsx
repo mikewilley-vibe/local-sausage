@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function RecipesPage() {
-  const [tab, setTab] = useState<'manual' | 'scan'>('manual');
+  const [tab, setTab] = useState<'manual' | 'scan'>('scan');
   const [locationLabel, setLocationLabel] = useState('My Kitchen');
   const [inSeason, setInSeason] = useState<string[]>(['tomatoes', 'basil', 'zucchini']);
   const [newIngredient, setNewIngredient] = useState('');
@@ -130,19 +130,6 @@ export default function RecipesPage() {
             <div className="flex gap-4">
               <button
                 onClick={() => {
-                  setTab('manual');
-                  setError('');
-                }}
-                className={`pb-2 px-4 font-medium transition ${
-                  tab === 'manual'
-                    ? 'border-b-2 border-orange-600 text-orange-600'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                Manual Entry
-              </button>
-              <button
-                onClick={() => {
                   setTab('scan');
                   setError('');
                 }}
@@ -153,6 +140,19 @@ export default function RecipesPage() {
                 }`}
               >
                 📸 Scan Photos
+              </button>
+              <button
+                onClick={() => {
+                  setTab('manual');
+                  setError('');
+                }}
+                className={`pb-2 px-4 font-medium transition ${
+                  tab === 'manual'
+                    ? 'border-b-2 border-orange-600 text-orange-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                Manual Entry
               </button>
             </div>
           </div>
