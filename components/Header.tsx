@@ -25,6 +25,9 @@ export default function Header() {
           <Link href="/markets" className="hover:opacity-80 transition font-medium">
             🌾 Markets
           </Link>
+          <Link href="/restaurants" className="hover:opacity-80 transition font-medium">
+            🍽️ Restaurants
+          </Link>
 
           {!isHome && (
             <Link
