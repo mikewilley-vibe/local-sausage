@@ -17,8 +17,10 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const region = searchParams.get("region") ?? "";
   const month = Number(searchParams.get("month") ?? "");
-  const lat = Number(searchParams.get("lat") ?? "");
-  const lng = Number(searchParams.get("lng") ?? "");
+  const latStr = searchParams.get("lat");
+  const lngStr = searchParams.get("lng");
+  const lat = latStr ? Number(latStr) : NaN;
+  const lng = lngStr ? Number(lngStr) : NaN;
 
   if (!month || month < 1 || month > 12) {
     return NextResponse.json({ error: "Invalid month (1-12)" }, { status: 400 });
