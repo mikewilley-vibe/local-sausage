@@ -122,7 +122,8 @@ export default function RecipesPage() {
         setError(data.error || 'Failed to scan images');
       }
     } catch (err) {
-      setError('Error scanning images. Make sure OpenAI API key is configured.');
+      console.error("Scan error:", err);
+      setError(err instanceof Error ? err.message : 'Error scanning images. Make sure OpenAI API key is configured.');
     } finally {
       setLoading(false);
     }

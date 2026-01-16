@@ -163,18 +163,22 @@ Return ONLY the JSON, no other text.`,
       }
     } catch (apiError) {
       console.error("OpenAI API error:", apiError);
+      const errorMessage = apiError instanceof Error ? apiError.message : "Failed to call OpenAI API";
+      console.error("Full error details:", { apiError, errorMessage });
       return NextResponse.json(
         {
-          error: apiError instanceof Error ? apiError.message : "Failed to call OpenAI API",
+          error: errorMessage,
         },
         { status: 500 }
       );
     }
   } catch (error) {
     console.error("Error scanning ingredients:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to scan ingredients";
+    console.error("Full error details:", { error, errorMessage });
     return NextResponse.json(
       {
-        error: error instanceof Error ? error.message : "Failed to scan ingredients",
+        error: errorMessage,
       },
       { status: 500 }
     );
