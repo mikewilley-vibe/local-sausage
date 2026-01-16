@@ -11,9 +11,16 @@ export async function POST(req: Request) {
     }
 
     const formData = await req.formData();
-    const images = formData.getAll("image_0");
+    
+    // Get all image fields (image_0, image_1, etc.)
+    const images: File[] = [];
+    for (const [key, value] of formData.entries()) {
+      if (key.startsWith('image_') && value instanceof File) {
+        images.push(value);
+      }
+    }
 
-    if (!images || images.length === 0) {
+    if (images.length === 0) {
       return NextResponse.json(
         { error: "No images provided" },
         { status: 400 }
@@ -24,12 +31,10 @@ export async function POST(req: Request) {
     const imageDataList: string[] = [];
 
     for (const imageFile of images) {
-      if (imageFile instanceof File) {
-        const buffer = await imageFile.arrayBuffer();
-        const base64 = Buffer.from(buffer).toString("base64");
-        const mimeType = imageFile.type || "image/jpeg";
-        imageDataList.push(`data:${mimeType};base64,${base64}`);
-      }
+      const buffer = await imageFile.arrayBuffer();
+      const base64 = Buffer.from(buffer).toString("base64");
+      const mimeType = imageFile.type || "image/jpeg";
+      imageDataList.push(`data:${mimeType};base64,${base64}`);
     }
 
     if (imageDataList.length === 0) {
