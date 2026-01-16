@@ -3,8 +3,11 @@
 import { useState } from 'react';
 
 export default function SeasonalPage() {
+  const [searchMode, setSearchMode] = useState<'region' | 'coordinates'>('region');
   const [region, setRegion] = useState('Northeast');
   const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [produce, setProduce] = useState<any>(null);
   const [error, setError] = useState('');
@@ -20,12 +23,29 @@ export default function SeasonalPage() {
   ];
 
   const handleSearch = async () => {
+    if (searchMode === 'region' && !region) {
+      setError('Please select a region');
+      return;
+    }
+    if (searchMode === 'coordinates' && (!latitude || !longitude)) {
+      setError('Please enter valid latitude and longitude');
+      return;
+    }
+
     setLoading(true);
     setError('');
     setProduce(null);
 
     try {
-      const response = await fetch(`/api/seasonal?region=${region}&month=${month}`);
+      let url = `/api/seasonal?month=${month}`;
+      
+      if (searchMode === 'region') {
+        url += `&region=${region}`;
+      } else {
+        url += `&lat=${latitude}&lng=${longitude}`;
+      }
+
+      const response = await fetch(url);
       const data = await response.json();
       
       if (response.ok) {
@@ -47,33 +67,100 @@ export default function SeasonalPage() {
         <p className="text-center text-gray-600 mb-8">Find seasonal produce by region and month</p>
 
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Region</label>
-              <select
-                value={region}
-                onChange={(e) => setRegion(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+          {/* Search Mode Tabs */}
+          <div className="mb-6 border-b border-gray-200">
+            <div className="flex gap-4">
+              <button
+                onClick={() => setSearchMode('region')}
+                className={`pb-2 px-4 font-medium transition ${
+                  searchMode === 'region'
+                    ? 'border-b-2 border-green-600 text-green-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
               >
-                {regions.map((r) => (
-                  <option key={r} value={r}>{r}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Month</label>
-              <select
-                value={month}
-                onChange={(e) => setMonth(Number(e.target.value))}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                By Region
+              </button>
+              <button
+                onClick={() => setSearchMode('coordinates')}
+                className={`pb-2 px-4 font-medium transition ${
+                  searchMode === 'coordinates'
+                    ? 'border-b-2 border-green-600 text-green-600'
+                    : 'text-gray-500 hover:text-gray-700'
+                }`}
               >
-                {months.map((m, i) => (
-                  <option key={i} value={i + 1}>{m}</option>
-                ))}
-              </select>
+                By Coordinates
+              </button>
             </div>
           </div>
+
+          {searchMode === 'region' ? (
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Region</label>
+                <select
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                >
+                  {regions.map((r) => (
+                    <option key={r} value={r}>{r}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Month</label>
+                <select
+                  value={month}
+                  onChange={(e) => setMonth(Number(e.target.value))}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                >
+                  {months.map((m, i) => (
+                    <option key={i} value={i + 1}>{m}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-6 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Latitude</label>
+                <input
+                  type="number"
+                  value={latitude || ''}
+                  onChange={(e) => setLatitude(e.target.value ? parseFloat(e.target.value) : null)}
+                  placeholder="e.g., 40.7128"
+                  step="0.0001"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Longitude</label>
+                <input
+                  type="number"
+                  value={longitude || ''}
+                  onChange={(e) => setLongitude(e.target.value ? parseFloat(e.target.value) : null)}
+                  placeholder="e.g., -74.0060"
+                  step="0.0001"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Month</label>
+                <select
+                  value={month}
+                  onChange={(e) => setMonth(Number(e.target.value))}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                >
+                  {months.map((m, i) => (
+                    <option key={i} value={i + 1}>{m}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
 
           <button
             onClick={handleSearch}
