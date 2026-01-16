@@ -16,12 +16,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 async function generateAllData() {
   console.log("🚀 Starting master data generation...\n");
 
-  // Import the existing scripts
-  const regionScript = await import("./generate-produce-by-region-month.mjs");
-  
   // Generate region-month data
   console.log("📍 Generating region-month produce data...");
-  await regionScript.main();
+  await import("./generate-produce-by-region-month.mjs");
   
   // Generate zone-month data (mock for now, can be replaced with Claude API calls)
   console.log("\n🌡️  Generating zone-month produce data...");
@@ -50,7 +47,7 @@ function generateZoneMonthData() {
   
   const outputPath = path.join(
     __dirname,
-    "../seasonal-sous-chef/data/seasonality/produce_by_zone_month.json"
+    "../data/seasonality/produce_by_zone_month.json"
   );
   
   fs.writeFileSync(
@@ -152,7 +149,7 @@ function generateRegionalSpecialties() {
   
   const outputPath = path.join(
     __dirname,
-    "../seasonal-sous-chef/data/regional_specialties.json"
+    "../data/regional_specialties.json"
   );
   
   fs.writeFileSync(
