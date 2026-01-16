@@ -368,7 +368,7 @@ export default function RecipesPage() {
 
               {scannedIngredients.length > 0 && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-sm font-medium text-green-800 mb-2">📦 Ingredients Found:</p>
+                  <p className="text-sm font-medium text-green-800 mb-3">📦 Ingredients Found: <span className="font-bold text-lg text-green-700">{scannedIngredients.length}</span></p>
                   <div className="flex flex-wrap gap-2">
                     {scannedIngredients.map((ing) => (
                       <div key={ing} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">

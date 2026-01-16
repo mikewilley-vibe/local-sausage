@@ -48,14 +48,33 @@ export async function POST(req: Request) {
     const contentArray: any[] = [
       {
         type: "text",
-        text: `You are a helpful kitchen assistant. Please analyze these photos of kitchen items/ingredients and identify all the food ingredients, produce, and pantry items you can see.
+        text: `You are an expert kitchen assistant with extensive food knowledge. Your task is to analyze photos of kitchen items and identify EVERY food ingredient, produce item, and pantry staple visible.
 
-Return ONLY a JSON object with this structure:
+IMPORTANT: Be thorough and identify as many items as possible. Look for:
+- Fresh produce (vegetables, fruits, herbs)
+- Proteins (meats, fish, poultry, tofu, nuts, legumes)
+- Dairy (milk, cheese, eggs, yogurt, butter)
+- Grains and starches (rice, pasta, bread, beans, lentils)
+- Oils, condiments, and seasonings (olive oil, vinegar, soy sauce, honey)
+- Canned and packaged goods
+- Spices and dried herbs
+- ANY recognizable food item
+
+Return ONLY a JSON object with this exact structure:
 {
   "ingredients": ["item1", "item2", "item3", ...]
 }
 
-List each ingredient as a simple lowercase name. Be specific but concise. Include vegetables, fruits, meats, dairy, pantry staples, herbs, spices, etc. that you can clearly identify.`,
+Requirements:
+- List each ingredient as a simple lowercase name
+- Be SPECIFIC (e.g., "bell pepper" not just "pepper", "olive oil" not just "oil")
+- Include quantity descriptors if relevant (e.g., "red bell pepper", "extra virgin olive oil")
+- Identify at least 15-25+ items per image
+- Remove duplicates
+- Include items partially visible or in background
+- Don't include packaging/containers unless they contain identifiable food
+
+Return ONLY the JSON, no other text.`,
       },
     ];
 
@@ -80,8 +99,8 @@ List each ingredient as a simple lowercase name. Be specific but concise. Includ
             content: contentArray as any,
           },
         ],
-        temperature: 0.7,
-        max_tokens: 500,
+        temperature: 0.5,
+        max_tokens: 1500,
       });
 
       const content = response.choices[0]?.message?.content;
@@ -106,22 +125,38 @@ List each ingredient as a simple lowercase name. Be specific but concise. Includ
         // Filter and clean ingredients
         const cleanedIngredients = ingredients
           .map((ing: string) => ing.toLowerCase().trim())
-          .filter((ing: string) => ing.length > 0)
+          .filter((ing: string) => ing.length > 1) // Allow very short items like "egg"
+          .filter((ing: string) => !ing.includes('photo') && !ing.includes('image') && !ing.includes('picture')) // Filter out photo references
           .filter((ing: string, index: number, arr: string[]) => arr.indexOf(ing) === index); // Remove duplicates
 
         return NextResponse.json({
           ingredients: cleanedIngredients,
           imageCount: imageDataList.length,
+          itemCount: cleanedIngredients.length,
         });
       } catch (parseError) {
-        // If JSON parsing fails, try to extract ingredients from the text
-        const ingredientMatches = content.match(/[\w\s]+/g) || [];
-        const ingredients = ingredientMatches
-          .filter((word: string) => word.length > 2)
-          .slice(0, 20);
+        // If JSON parsing fails, try to extract ingredients from the text with better logic
+        const lines = content.split('\n');
+        const ingredients: string[] = [];
+        
+        for (const line of lines) {
+          // Extract quoted items or list items
+          const quoted = line.match(/"([^"]+)"/g);
+          if (quoted) {
+            quoted.forEach(q => {
+              const item = q.replace(/['"]/g, '').toLowerCase().trim();
+              if (item.length > 1 && !item.includes('photo') && !item.includes('image')) {
+                ingredients.push(item);
+              }
+            });
+          }
+        }
+
+        // Remove duplicates
+        const uniqueIngredients = [...new Set(ingredients)].slice(0, 50);
 
         return NextResponse.json({
-          ingredients,
+          ingredients: uniqueIngredients,
           imageCount: imageDataList.length,
           note: "Parsed from text response",
         });
