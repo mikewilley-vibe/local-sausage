@@ -103,12 +103,12 @@ export default function RestaurantsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-red-50 to-orange-50 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-orange-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <Link href="/" className="inline-block mb-6 px-4 py-2 text-red-600 hover:text-red-700 font-semibold">
+        <Link href="/" className="inline-block mb-6 px-4 py-2 text-amber-700 hover:text-amber-800 font-semibold">
           ← Back to Seasonal Sous Chef
         </Link>
-        <h1 className="text-4xl font-bold text-center mb-2 text-red-700">🍽️ Local Restaurants</h1>
+        <h1 className="text-4xl font-bold text-center mb-2 text-amber-700">🍽️ Local Restaurants</h1>
         <p className="text-center text-gray-600 mb-8">Find restaurants near you with seasonal menus</p>
 
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
@@ -119,7 +119,7 @@ export default function RestaurantsPage() {
                 onClick={() => setUseCoordinates(false)}
                 className={`pb-2 px-4 font-medium transition ${
                   !useCoordinates
-                    ? 'border-b-2 border-red-600 text-red-600'
+                    ? 'border-b-2 border-amber-700 text-amber-700'
                     : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
@@ -129,7 +129,7 @@ export default function RestaurantsPage() {
                 onClick={() => setUseCoordinates(true)}
                 className={`pb-2 px-4 font-medium transition ${
                   useCoordinates
-                    ? 'border-b-2 border-red-600 text-red-600'
+                    ? 'border-b-2 border-amber-700 text-amber-700'
                     : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
@@ -147,13 +147,13 @@ export default function RestaurantsPage() {
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="e.g., New York, NY or 40.7128, -74.0060"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                 />
               </div>
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-bold py-2 px-4 rounded-lg transition duration-200"
+                className="w-full bg-amber-700 hover:bg-amber-800 disabled:bg-gray-400 text-white font-bold py-2 px-4 rounded-lg transition duration-200"
               >
                 {loading ? 'Searching...' : 'Search Restaurants'}
               </button>
@@ -169,7 +169,7 @@ export default function RestaurantsPage() {
                     onChange={(e) => setLatitude(e.target.value ? parseFloat(e.target.value) : null)}
                     placeholder="e.g., 40.7128"
                     step="0.0001"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -180,14 +180,14 @@ export default function RestaurantsPage() {
                     onChange={(e) => setLongitude(e.target.value ? parseFloat(e.target.value) : null)}
                     placeholder="e.g., -74.0060"
                     step="0.0001"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
                   />
                 </div>
               </div>
               <button
                 onClick={handleCoordinateSearch}
                 disabled={loading}
-                className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-400 text-white font-bold py-2 px-4 rounded-lg transition duration-200"
+                className="w-full bg-amber-700 hover:bg-amber-800 disabled:bg-gray-400 text-white font-bold py-2 px-4 rounded-lg transition duration-200"
               >
                 {loading ? 'Searching...' : 'Find Restaurants'}
               </button>
@@ -197,14 +197,14 @@ export default function RestaurantsPage() {
           <button
             onClick={handleGetLocation}
             disabled={loading}
-            className="w-full mt-4 bg-red-100 hover:bg-red-200 disabled:bg-gray-200 text-red-700 font-bold py-2 px-4 rounded-lg transition border border-red-300"
+            className="w-full mt-4 bg-amber-100 hover:bg-amber-200 disabled:bg-gray-200 text-amber-700 font-bold py-2 px-4 rounded-lg transition border border-amber-300"
           >
             📍 Use My Location
           </button>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-8">
+          <div className="bg-amber-50 border border-amber-200 text-amber-700 px-4 py-3 rounded-lg mb-8">
             {error}
           </div>
         )}
@@ -221,7 +221,7 @@ export default function RestaurantsPage() {
                   className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition"
                 >
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-lg font-semibold text-red-700">{restaurant.name}</h3>
+                    <h3 className="text-lg font-semibold text-amber-700">{restaurant.name}</h3>
                     {restaurant.rating && (
                       <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm font-medium">
                         ⭐ {restaurant.rating.toFixed(1)}
@@ -245,7 +245,7 @@ export default function RestaurantsPage() {
                         href={restaurant.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-600 hover:text-red-800 font-semibold"
+                        className="text-amber-700 hover:text-amber-800 font-semibold"
                       >
                         Visit →
                       </a>
