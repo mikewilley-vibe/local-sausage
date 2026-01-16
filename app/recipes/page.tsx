@@ -2,6 +2,17 @@
 
 import { useState } from 'react';
 
+const SUGGESTED_INGREDIENTS = [
+  'chicken', 'beef', 'pork', 'salmon', 'shrimp', 'tofu',
+  'rice', 'pasta', 'bread', 'quinoa', 'couscous',
+  'onions', 'garlic', 'bell peppers', 'carrots', 'broccoli', 'spinach', 'mushrooms',
+  'tomatoes', 'cucumbers', 'lettuce', 'cabbage', 'potatoes', 'sweet potatoes',
+  'cheese', 'milk', 'eggs', 'yogurt', 'butter',
+  'olive oil', 'coconut oil', 'soy sauce', 'vinegar', 'honey',
+  'lemon', 'lime', 'orange', 'ginger', 'cilantro', 'basil', 'rosemary',
+  'black beans', 'chickpeas', 'lentils', 'nuts', 'seeds',
+];
+
 export default function RecipesPage() {
   const [tab, setTab] = useState<'manual' | 'scan'>('scan');
   const [locationLabel, setLocationLabel] = useState('My Kitchen');
@@ -13,6 +24,10 @@ export default function RecipesPage() {
   const [error, setError] = useState('');
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
   const [scannedIngredients, setScannedIngredients] = useState<string[]>([]);
+
+  const suggestedIngredients = SUGGESTED_INGREDIENTS.filter(
+    ing => !inSeason.includes(ing) && ing.toLowerCase().includes(newIngredient.toLowerCase())
+  ).slice(0, 5);
 
   const addIngredient = () => {
     if (newIngredient.trim() && !inSeason.includes(newIngredient.trim())) {
@@ -172,14 +187,34 @@ export default function RecipesPage() {
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">Ingredients</label>
               <div className="flex gap-2 mb-3">
-                <input
-                  type="text"
-                  value={newIngredient}
-                  onChange={(e) => setNewIngredient(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && addIngredient()}
-                  placeholder="Add an ingredient..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                />
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    value={newIngredient}
+                    onChange={(e) => setNewIngredient(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && addIngredient()}
+                    placeholder="Add an ingredient..."
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  />
+                  {suggestedIngredients.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                      {suggestedIngredients.map((suggestion) => (
+                        <button
+                          key={suggestion}
+                          onClick={() => {
+                            if (!inSeason.includes(suggestion)) {
+                              setInSeason([...inSeason, suggestion]);
+                              setNewIngredient('');
+                            }
+                          }}
+                          className="w-full text-left px-4 py-2 hover:bg-orange-100 text-gray-800 text-sm"
+                        >
+                          {suggestion}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 <button
                   onClick={addIngredient}
                   className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition"
@@ -188,7 +223,7 @@ export default function RecipesPage() {
                 </button>
               </div>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {inSeason.map((ing) => (
                   <div key={ing} className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
                     {ing}
@@ -200,6 +235,23 @@ export default function RecipesPage() {
                     </button>
                   </div>
                 ))}
+              </div>
+
+              <div className="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <p className="text-xs font-medium text-gray-600 mb-2 uppercase">Quick Add Suggestions</p>
+                <div className="flex flex-wrap gap-2">
+                  {['chicken', 'beef', 'shrimp', 'cheese', 'mushrooms', 'spinach', 'bell peppers', 'rice', 'pasta', 'eggs', 'salmon', 'beans'].map((ing) => (
+                    !inSeason.includes(ing) && (
+                      <button
+                        key={ing}
+                        onClick={() => setInSeason([...inSeason, ing])}
+                        className="bg-white hover:bg-orange-50 border border-gray-300 hover:border-orange-400 text-gray-700 text-xs px-2 py-1 rounded-md transition"
+                      >
+                        + {ing}
+                      </button>
+                    )
+                  ))}
+                </div>
               </div>
             </div>
           ) : (
@@ -390,6 +442,38 @@ export default function RecipesPage() {
                   </ul>
                 </div>
               )}
+
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                  <h4 className="font-bold text-purple-900 mb-2">💡 Pro Tips</h4>
+                  <ul className="space-y-1 text-purple-900 text-sm">
+                    <li>• Prep all ingredients before you start cooking</li>
+                    <li>• Taste and adjust seasonings as you go</li>
+                    <li>• Let proteins rest after cooking</li>
+                    <li>• Save the pasta water for sauce!</li>
+                  </ul>
+                </div>
+                <div className="p-4 bg-pink-50 rounded-lg border border-pink-200">
+                  <h4 className="font-bold text-pink-900 mb-2">🍽️ Serving Suggestions</h4>
+                  <ul className="space-y-1 text-pink-900 text-sm">
+                    <li>• Serve hot from the pan</li>
+                    <li>• Garnish with fresh herbs</li>
+                    <li>• Pair with a fresh salad</li>
+                    <li>• Add lemon juice before serving</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                <h4 className="font-bold text-amber-900 mb-3">🌟 Other Recipe Ideas with These Ingredients</h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {['Stir-fry', 'Soup', 'Salad', 'Pasta', 'Grain Bowl', 'Tacos', 'Sandwich', 'Curry', 'Roasted'].map((idea) => (
+                    <div key={idea} className="bg-white p-2 rounded border border-amber-200 text-center text-sm text-amber-900 font-medium cursor-pointer hover:bg-amber-100 transition">
+                      {idea}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         )}
