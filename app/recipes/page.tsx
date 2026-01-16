@@ -9,6 +9,7 @@ export default function RecipesPage() {
   const [newIngredient, setNewIngredient] = useState('');
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
+  const [selectedRecipeIndex, setSelectedRecipeIndex] = useState<number | null>(null);
   const [error, setError] = useState('');
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
   const [scannedIngredients, setScannedIngredients] = useState<string[]>([]);
@@ -297,71 +298,99 @@ export default function RecipesPage() {
           </div>
         )}
 
-        {recipes.length > 0 && (
-          <div className="space-y-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">🍳 Your Recipes</h2>
-            {recipes.map((recipe, idx) => (
-              <div key={idx} className="bg-white rounded-lg shadow-lg p-8 border-l-4 border-orange-500">
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-orange-700 mb-2">{recipe.title}</h3>
-                  <p className="text-gray-600 font-medium">⏱️ {recipe.timeMinutes} minutes</p>
-                </div>
+        {recipes.length > 0 && selectedRecipeIndex === null && (
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">🍳 Choose a Recipe</h2>
+            <div className="grid gap-4">
+              {recipes.map((recipe, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedRecipeIndex(idx)}
+                  className="text-left bg-white rounded-lg shadow-md hover:shadow-lg p-6 border-l-4 border-orange-500 transition hover:bg-orange-50"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="text-xl font-bold text-orange-700 mb-2">{recipe.title}</h3>
+                      <p className="text-gray-600 font-medium mb-3">⏱️ {recipe.timeMinutes} minutes</p>
+                      <p className="text-gray-700 text-sm">📋 {recipe.ingredients?.length || 0} ingredients</p>
+                    </div>
+                    <span className="text-3xl">→</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
-                <div className="mb-6">
-                  <h4 className="text-lg font-bold text-gray-800 mb-3">📋 Ingredients</h4>
-                  <ul className="space-y-2 text-gray-700">
-                    {recipe.ingredients?.map((ing: string, i: number) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-orange-600 font-bold mt-0.5">•</span>
-                        <span>{ing}</span>
+        {recipes.length > 0 && selectedRecipeIndex !== null && recipes[selectedRecipeIndex] && (
+          <div className="space-y-6">
+            <button
+              onClick={() => setSelectedRecipeIndex(null)}
+              className="text-orange-600 hover:text-orange-700 font-medium flex items-center gap-2 mb-4"
+            >
+              ← Back to Recipe List
+            </button>
+            
+            <div className="bg-white rounded-lg shadow-lg p-8 border-l-4 border-orange-500">
+              <div className="mb-6">
+                <h3 className="text-3xl font-bold text-orange-700 mb-2">{recipes[selectedRecipeIndex].title}</h3>
+                <p className="text-gray-600 font-medium text-lg">⏱️ {recipes[selectedRecipeIndex].timeMinutes} minutes</p>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-lg font-bold text-gray-800 mb-4">📋 Ingredients</h4>
+                <ul className="space-y-2 text-gray-700">
+                  {recipes[selectedRecipeIndex].ingredients?.map((ing: string, i: number) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="text-orange-600 font-bold mt-1">✓</span>
+                      <span>{ing}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-lg font-bold text-gray-800 mb-4">👨‍🍳 Steps</h4>
+                <ol className="space-y-4 text-gray-700">
+                  {recipes[selectedRecipeIndex].steps?.map((step: string, i: number) => (
+                    <li key={i} className="flex gap-4">
+                      <span className="font-bold text-orange-600 flex-shrink-0 w-8 h-8 flex items-center justify-center bg-orange-100 rounded-full">
+                        {i + 1}
+                      </span>
+                      <span className="pt-1 leading-relaxed">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              {recipes[selectedRecipeIndex].substitutions && recipes[selectedRecipeIndex].substitutions.length > 0 && (
+                <div className="mb-6 p-5 bg-blue-50 rounded-lg border border-blue-200">
+                  <h4 className="font-bold text-blue-900 mb-3">🔄 Substitutions</h4>
+                  <ul className="space-y-2 text-blue-900 text-sm">
+                    {recipes[selectedRecipeIndex].substitutions.map((sub: string, i: number) => (
+                      <li key={i} className="flex gap-2">
+                        <span className="text-blue-600 flex-shrink-0">•</span>
+                        <span>{sub}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
+              )}
 
-                <div className="mb-6">
-                  <h4 className="text-lg font-bold text-gray-800 mb-3">👨‍🍳 Steps</h4>
-                  <ol className="space-y-3 text-gray-700">
-                    {recipe.steps?.map((step: string, i: number) => (
-                      <li key={i} className="flex gap-3">
-                        <span className="font-bold text-orange-600 flex-shrink-0 w-6 h-6 flex items-center justify-center bg-orange-100 rounded-full">
-                          {i + 1}
-                        </span>
-                        <span className="pt-0.5">{step}</span>
+              {recipes[selectedRecipeIndex].optionalShoppingAddOns && recipes[selectedRecipeIndex].optionalShoppingAddOns.length > 0 && (
+                <div className="p-5 bg-green-50 rounded-lg border border-green-200">
+                  <h4 className="font-bold text-green-900 mb-3">🛒 Optional Add-ons</h4>
+                  <ul className="space-y-2 text-green-900 text-sm">
+                    {recipes[selectedRecipeIndex].optionalShoppingAddOns.map((addon: string, i: number) => (
+                      <li key={i} className="flex gap-2">
+                        <span className="text-green-600 flex-shrink-0">•</span>
+                        <span>{addon}</span>
                       </li>
                     ))}
-                  </ol>
+                  </ul>
                 </div>
-
-                {recipe.substitutions && recipe.substitutions.length > 0 && (
-                  <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <h4 className="font-bold text-blue-900 mb-2">🔄 Substitutions</h4>
-                    <ul className="space-y-1 text-blue-900 text-sm">
-                      {recipe.substitutions.map((sub: string, i: number) => (
-                        <li key={i} className="flex gap-2">
-                          <span className="text-blue-600">•</span>
-                          <span>{sub}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {recipe.optionalShoppingAddOns && recipe.optionalShoppingAddOns.length > 0 && (
-                  <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                    <h4 className="font-bold text-green-900 mb-2">🛒 Optional Add-ons</h4>
-                    <ul className="space-y-1 text-green-900 text-sm">
-                      {recipe.optionalShoppingAddOns.map((addon: string, i: number) => (
-                        <li key={i} className="flex gap-2">
-                          <span className="text-green-600">•</span>
-                          <span>{addon}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
+              )}
+            </div>
           </div>
         )}
       </div>
