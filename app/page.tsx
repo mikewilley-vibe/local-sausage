@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 to-green-50">
@@ -8,20 +10,29 @@ export default function Home() {
         </p>
         
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-2">📍 By Location</h2>
-            <p className="text-gray-600">Get seasonal produce based on your USDA hardiness zone or region</p>
-          </div>
+          <Link href="/seasonal">
+            <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg hover:scale-105 transition-all cursor-pointer">
+              <h2 className="text-xl font-semibold mb-2">📍 By Location</h2>
+              <p className="text-gray-600 mb-4">Get seasonal produce based on your USDA hardiness zone or region</p>
+              <span className="text-blue-600 font-semibold hover:text-blue-800">Explore →</span>
+            </div>
+          </Link>
           
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-2">🍳 Recipes</h2>
-            <p className="text-gray-600">AI-generated recipes using seasonal ingredients</p>
-          </div>
+          <Link href="/recipes">
+            <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg hover:scale-105 transition-all cursor-pointer">
+              <h2 className="text-xl font-semibold mb-2">🍳 Recipes</h2>
+              <p className="text-gray-600 mb-4">AI-generated recipes using seasonal ingredients</p>
+              <span className="text-orange-600 font-semibold hover:text-orange-800">Explore →</span>
+            </div>
+          </Link>
           
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-2">🌍 Local Markets</h2>
-            <p className="text-gray-600">Find farmers markets and local sources nearby</p>
-          </div>
+          <Link href="/markets">
+            <div className="bg-white p-6 rounded-lg shadow hover:shadow-lg hover:scale-105 transition-all cursor-pointer">
+              <h2 className="text-xl font-semibold mb-2">🌍 Local Markets</h2>
+              <p className="text-gray-600 mb-4">Find farmers markets and local sources nearby</p>
+              <span className="text-green-600 font-semibold hover:text-green-800">Explore →</span>
+            </div>
+          </Link>
         </div>
 
         <div className="mt-12 text-center">
