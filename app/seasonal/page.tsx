@@ -96,7 +96,10 @@ export default function SeasonalPage() {
           <div className="mb-6 border-b border-gray-200">
             <div className="flex gap-4">
               <button
-                onClick={() => setSearchMode('region')}
+                onClick={() => {
+                  setSearchMode('region');
+                  setError('');
+                }}
                 className={`pb-2 px-4 font-medium transition ${
                   searchMode === 'region'
                     ? 'border-b-2 border-green-600 text-green-600'
@@ -106,7 +109,10 @@ export default function SeasonalPage() {
                 By Region
               </button>
               <button
-                onClick={() => setSearchMode('coordinates')}
+                onClick={() => {
+                  setSearchMode('coordinates');
+                  setError('');
+                }}
                 className={`pb-2 px-4 font-medium transition ${
                   searchMode === 'coordinates'
                     ? 'border-b-2 border-green-600 text-green-600'
