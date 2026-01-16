@@ -13,10 +13,14 @@ const SUGGESTED_INGREDIENTS = [
   'black beans', 'chickpeas', 'lentils', 'nuts', 'seeds',
 ];
 
+const DEFAULT_STAPLES = ['salt', 'pepper', 'oil', 'garlic', 'butter'];
+
 export default function RecipesPage() {
   const [tab, setTab] = useState<'manual' | 'scan'>('scan');
   const [locationLabel, setLocationLabel] = useState('My Kitchen');
   const [inSeason, setInSeason] = useState<string[]>(['tomatoes', 'basil', 'zucchini']);
+  const [staples, setStaples] = useState<string[]>(DEFAULT_STAPLES);
+  const [newStaple, setNewStaple] = useState('');
   const [newIngredient, setNewIngredient] = useState('');
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
@@ -28,6 +32,17 @@ export default function RecipesPage() {
   const suggestedIngredients = SUGGESTED_INGREDIENTS.filter(
     ing => !inSeason.includes(ing) && ing.toLowerCase().includes(newIngredient.toLowerCase())
   ).slice(0, 5);
+
+  const addStaple = () => {
+    if (newStaple.trim() && !staples.includes(newStaple.trim())) {
+      setStaples([...staples, newStaple.trim()]);
+      setNewStaple('');
+    }
+  };
+
+  const removeStaple = (staple: string) => {
+    setStaples(staples.filter(s => s !== staple));
+  };
 
   const addIngredient = () => {
     if (newIngredient.trim() && !inSeason.includes(newIngredient.trim())) {
@@ -112,7 +127,7 @@ export default function RecipesPage() {
         body: JSON.stringify({
           locationLabel,
           inSeason,
-          staples: ['salt', 'pepper', 'oil', 'garlic'],
+          staples,
           dietary: [],
           maxTimeMinutes: 30,
           skill: 'intermediate',
@@ -253,6 +268,41 @@ export default function RecipesPage() {
                   ))}
                 </div>
               </div>
+
+              <div className="mb-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                <h3 className="text-sm font-bold text-slate-800 mb-3">🏪 These Are The Staples I Have</h3>
+                <div className="flex gap-2 mb-3">
+                  <div className="flex-1 relative">
+                    <input
+                      type="text"
+                      value={newStaple}
+                      onChange={(e) => setNewStaple(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && addStaple()}
+                      placeholder="Add a staple (salt, oil, etc)..."
+                      className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+                    />
+                  </div>
+                  <button
+                    onClick={addStaple}
+                    className="bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-3 rounded-lg transition text-sm"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {staples.map((staple) => (
+                    <div key={staple} className="bg-slate-200 text-slate-800 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                      {staple}
+                      <button
+                        onClick={() => removeStaple(staple)}
+                        className="hover:text-slate-900 font-bold ml-1"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           ) : (
             <div className="mb-6">
@@ -317,6 +367,41 @@ export default function RecipesPage() {
                   </div>
                 </div>
               )}
+
+              <div className="mb-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                <h3 className="text-sm font-bold text-slate-800 mb-3">🏪 These Are The Staples I Have</h3>
+                <div className="flex gap-2 mb-3">
+                  <div className="flex-1 relative">
+                    <input
+                      type="text"
+                      value={newStaple}
+                      onChange={(e) => setNewStaple(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && addStaple()}
+                      placeholder="Add a staple (salt, oil, etc)..."
+                      className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent"
+                    />
+                  </div>
+                  <button
+                    onClick={addStaple}
+                    className="bg-slate-600 hover:bg-slate-700 text-white font-bold py-2 px-3 rounded-lg transition text-sm"
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {staples.map((staple) => (
+                    <div key={staple} className="bg-slate-200 text-slate-800 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                      {staple}
+                      <button
+                        onClick={() => removeStaple(staple)}
+                        className="hover:text-slate-900 font-bold ml-1"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           )}
 
