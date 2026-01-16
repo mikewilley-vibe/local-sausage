@@ -1,0 +1,14 @@
+{
+  "name": "seasonal-sous-chef",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd seasonal-sous-chef && npm run dev",
+    "build": "cd seasonal-sous-chef && npm run build",
+    "start": "cd seasonal-sous-chef && npm run start",
+    "lint": "cd seasonal-sous-chef && npm run lint",
+    "seasonality:build": "cd seasonal-sous-chef && npm run seasonality:build",
+    "seasonality:build-all": "cd seasonal-sous-chef && npm run seasonality:build-all",
+    "seasonality:check": "cd seasonal-sous-chef && npm run seasonality:check"
+  }
+}
