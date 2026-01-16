@@ -34,16 +34,6 @@ export default function Home() {
             </div>
           </Link>
         </div>
-
-        <div className="mt-12 text-center">
-          <h3 className="text-2xl font-semibold mb-4">API Endpoints</h3>
-          <ul className="space-y-2 text-gray-600">
-            <li><code className="bg-gray-100 px-2 py-1 rounded">/api/seasonal?region=Northeast&month=6</code></li>
-            <li><code className="bg-gray-100 px-2 py-1 rounded">/api/seasonal?lat=40.7128&lng=-74.0060&month=8</code></li>
-            <li><code className="bg-gray-100 px-2 py-1 rounded">/api/recipes</code> - POST with seasonal items</li>
-            <li><code className="bg-gray-100 px-2 py-1 rounded">/api/markets?lat=40.7128&lng=-74.0060</code></li>
-          </ul>
-        </div>
       </div>
     </main>
   );
