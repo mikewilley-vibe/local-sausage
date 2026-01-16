@@ -66,68 +66,75 @@ List each ingredient as a simple lowercase name. Be specific but concise. Includ
     }
 
     // Call OpenAI with vision
-    const response = await openai.chat.completions.create({
-      model: "gpt-4-turbo",
-      messages: [
-        {
-          role: "user",
-          content: contentArray,
-        },
-      ],
-      temperature: 0.7,
-      max_tokens: 500,
-    });
-
-    const content = response.choices[0]?.message?.content;
-
-    if (!content) {
-      return NextResponse.json(
-        { error: "No response from OpenAI" },
-        { status: 500 }
-      );
-    }
-
-    // Parse the JSON response
     try {
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) {
-        throw new Error("No JSON found in response");
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          {
+            role: "user",
+            content: contentArray as any,
+          },
+        ],
+        temperature: 0.7,
+        max_tokens: 500,
+      });
+
+      const content = response.choices[0]?.message?.content;
+
+      if (!content) {
+        return NextResponse.json(
+          { error: "No response from OpenAI" },
+          { status: 500 }
+        );
       }
 
-      const parsed = JSON.parse(jsonMatch[0]);
-      const ingredients = Array.isArray(parsed.ingredients) ? parsed.ingredients : [];
+      // Parse the JSON response
+      try {
+        const jsonMatch = content.match(/\{[\s\S]*\}/);
+        if (!jsonMatch) {
+          throw new Error("No JSON found in response");
+        }
 
-      // Filter and clean ingredients
-      const cleanedIngredients = ingredients
-        .map((ing: string) => ing.toLowerCase().trim())
-        .filter((ing: string) => ing.length > 0)
-        .filter((ing: string, index: number, arr: string[]) => arr.indexOf(ing) === index); // Remove duplicates
+        const parsed = JSON.parse(jsonMatch[0]);
+        const ingredients = Array.isArray(parsed.ingredients) ? parsed.ingredients : [];
 
-      return NextResponse.json({
-        ingredients: cleanedIngredients,
-        imageCount: imageDataList.length,
-      });
-    } catch (parseError) {
-      // If JSON parsing fails, try to extract ingredients from the text
-      const ingredientMatches = content.match(/[\w\s]+/g) || [];
-      const ingredients = ingredientMatches
-        .filter((word: string) => word.length > 2)
-        .slice(0, 20);
+        // Filter and clean ingredients
+        const cleanedIngredients = ingredients
+          .map((ing: string) => ing.toLowerCase().trim())
+          .filter((ing: string) => ing.length > 0)
+          .filter((ing: string, index: number, arr: string[]) => arr.indexOf(ing) === index); // Remove duplicates
 
-      return NextResponse.json({
-        ingredients,
-        imageCount: imageDataList.length,
-        note: "Parsed from text response",
-      });
+        return NextResponse.json({
+          ingredients: cleanedIngredients,
+          imageCount: imageDataList.length,
+        });
+      } catch (parseError) {
+        // If JSON parsing fails, try to extract ingredients from the text
+        const ingredientMatches = content.match(/[\w\s]+/g) || [];
+        const ingredients = ingredientMatches
+          .filter((word: string) => word.length > 2)
+          .slice(0, 20);
+
+        return NextResponse.json({
+          ingredients,
+          imageCount: imageDataList.length,
+          note: "Parsed from text response",
+        });
+      }
+    } catch (apiError) {
+      console.error("OpenAI API error:", apiError);
+      return NextResponse.json(
+        {
+          error: apiError instanceof Error ? apiError.message : "Failed to call OpenAI API",
+        },
+        { status: 500 }
+      );
     }
   } catch (error) {
     console.error("Error scanning ingredients:", error);
     return NextResponse.json(
       {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to scan ingredients",
+        error: error instanceof Error ? error.message : "Failed to scan ingredients",
       },
       { status: 500 }
     );
