@@ -1,0 +1,1566 @@
+{
+  "Northeast-1": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes",
+      "winter squash"
+    ]
+  },
+  "Northeast-2": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes"
+    ]
+  },
+  "Northeast-3": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "Northeast-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "Northeast-5": {
+    "fruits": [
+      "cherries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "broccoli",
+      "lettuce",
+      "peas"
+    ]
+  },
+  "Northeast-6": {
+    "fruits": [
+      "blueberries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "zucchini"
+    ]
+  },
+  "Northeast-7": {
+    "fruits": [
+      "blueberries"
+    ],
+    "vegetables": [
+      "corn",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "Northeast-8": {
+    "fruits": [
+      "grapes",
+      "peaches"
+    ],
+    "vegetables": [
+      "corn",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Northeast-9": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "Northeast-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "cauliflower"
+    ]
+  },
+  "Northeast-11": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale"
+    ]
+  },
+  "Northeast-12": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes"
+    ]
+  },
+  "MidAtlantic-1": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "MidAtlantic-2": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "MidAtlantic-3": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "MidAtlantic-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "peas",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "MidAtlantic-5": {
+    "fruits": [
+      "cherries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "beets",
+      "broccoli",
+      "lettuce",
+      "peas"
+    ]
+  },
+  "MidAtlantic-6": {
+    "fruits": [
+      "blueberries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "MidAtlantic-7": {
+    "fruits": [
+      "blackberries",
+      "blueberries",
+      "peaches"
+    ],
+    "vegetables": [
+      "corn",
+      "green beans",
+      "peppers",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "MidAtlantic-8": {
+    "fruits": [
+      "grapes",
+      "peaches",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "eggplant",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "MidAtlantic-9": {
+    "fruits": [
+      "apples",
+      "grapes"
+    ],
+    "vegetables": [
+      "peppers",
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "MidAtlantic-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "cauliflower",
+      "kale",
+      "pumpkins"
+    ]
+  },
+  "MidAtlantic-11": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "turnips"
+    ]
+  },
+  "MidAtlantic-12": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "Southeast-1": {
+    "fruits": [
+      "citrus",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "lettuce",
+      "sweet potatoes"
+    ]
+  },
+  "Southeast-2": {
+    "fruits": [
+      "citrus",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "lettuce",
+      "spinach"
+    ]
+  },
+  "Southeast-3": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "spinach"
+    ]
+  },
+  "Southeast-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "lettuce",
+      "tomatoes"
+    ]
+  },
+  "Southeast-5": {
+    "fruits": [
+      "blueberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "Southeast-6": {
+    "fruits": [
+      "peaches",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "okra",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Southeast-7": {
+    "fruits": [
+      "stone fruit",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "eggplant",
+      "okra",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Southeast-8": {
+    "fruits": [
+      "figs",
+      "grapes"
+    ],
+    "vegetables": [
+      "eggplant",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Southeast-9": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "Southeast-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "greens"
+    ]
+  },
+  "Southeast-11": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "greens"
+    ]
+  },
+  "Southeast-12": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "cabbage",
+      "greens",
+      "sweet potatoes"
+    ]
+  },
+  "Midwest-1": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes",
+      "winter squash"
+    ]
+  },
+  "Midwest-2": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes"
+    ]
+  },
+  "Midwest-3": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "Midwest-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "Midwest-5": {
+    "fruits": [
+      "cherries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "broccoli",
+      "lettuce",
+      "peas"
+    ]
+  },
+  "Midwest-6": {
+    "fruits": [
+      "blueberries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "zucchini"
+    ]
+  },
+  "Midwest-7": {
+    "fruits": [
+      "blueberries"
+    ],
+    "vegetables": [
+      "corn",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "Midwest-8": {
+    "fruits": [
+      "grapes",
+      "peaches"
+    ],
+    "vegetables": [
+      "corn",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Midwest-9": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "Midwest-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "cauliflower"
+    ]
+  },
+  "Midwest-11": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale"
+    ]
+  },
+  "Midwest-12": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes"
+    ]
+  },
+  "Plains-1": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes",
+      "winter squash"
+    ]
+  },
+  "Plains-2": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes"
+    ]
+  },
+  "Plains-3": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "Plains-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "Plains-5": {
+    "fruits": [
+      "cherries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "broccoli",
+      "lettuce",
+      "peas"
+    ]
+  },
+  "Plains-6": {
+    "fruits": [
+      "blueberries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "zucchini"
+    ]
+  },
+  "Plains-7": {
+    "fruits": [
+      "blueberries"
+    ],
+    "vegetables": [
+      "corn",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "Plains-8": {
+    "fruits": [
+      "grapes",
+      "peaches"
+    ],
+    "vegetables": [
+      "corn",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Plains-9": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "Plains-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "cauliflower"
+    ]
+  },
+  "Plains-11": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale"
+    ]
+  },
+  "Plains-12": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes"
+    ]
+  },
+  "Mountain-1": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes",
+      "winter squash"
+    ]
+  },
+  "Mountain-2": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes"
+    ]
+  },
+  "Mountain-3": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "Mountain-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "Mountain-5": {
+    "fruits": [
+      "cherries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "broccoli",
+      "lettuce",
+      "peas"
+    ]
+  },
+  "Mountain-6": {
+    "fruits": [
+      "blueberries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "zucchini"
+    ]
+  },
+  "Mountain-7": {
+    "fruits": [
+      "blueberries"
+    ],
+    "vegetables": [
+      "corn",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "Mountain-8": {
+    "fruits": [
+      "grapes",
+      "peaches"
+    ],
+    "vegetables": [
+      "corn",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Mountain-9": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "Mountain-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "cauliflower"
+    ]
+  },
+  "Mountain-11": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale"
+    ]
+  },
+  "Mountain-12": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "kale",
+      "potatoes"
+    ]
+  },
+  "Southwest-1": {
+    "fruits": [
+      "citrus",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "lettuce",
+      "sweet potatoes"
+    ]
+  },
+  "Southwest-2": {
+    "fruits": [
+      "citrus",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "lettuce",
+      "spinach"
+    ]
+  },
+  "Southwest-3": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "spinach"
+    ]
+  },
+  "Southwest-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "lettuce",
+      "tomatoes"
+    ]
+  },
+  "Southwest-5": {
+    "fruits": [
+      "blueberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "Southwest-6": {
+    "fruits": [
+      "peaches",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "okra",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Southwest-7": {
+    "fruits": [
+      "stone fruit",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "eggplant",
+      "okra",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Southwest-8": {
+    "fruits": [
+      "figs",
+      "grapes"
+    ],
+    "vegetables": [
+      "eggplant",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Southwest-9": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "Southwest-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "greens"
+    ]
+  },
+  "Southwest-11": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "greens"
+    ]
+  },
+  "Southwest-12": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "cabbage",
+      "greens",
+      "sweet potatoes"
+    ]
+  },
+  "West-1": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "West-2": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "West-3": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "West-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "peas",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "West-5": {
+    "fruits": [
+      "cherries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "beets",
+      "broccoli",
+      "lettuce",
+      "peas"
+    ]
+  },
+  "West-6": {
+    "fruits": [
+      "blueberries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "West-7": {
+    "fruits": [
+      "blackberries",
+      "blueberries",
+      "peaches"
+    ],
+    "vegetables": [
+      "corn",
+      "green beans",
+      "peppers",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "West-8": {
+    "fruits": [
+      "grapes",
+      "peaches",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "eggplant",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "West-9": {
+    "fruits": [
+      "apples",
+      "grapes"
+    ],
+    "vegetables": [
+      "peppers",
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "West-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "cauliflower",
+      "kale",
+      "pumpkins"
+    ]
+  },
+  "West-11": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "turnips"
+    ]
+  },
+  "West-12": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "South-1": {
+    "fruits": [
+      "citrus",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "lettuce",
+      "sweet potatoes"
+    ]
+  },
+  "South-2": {
+    "fruits": [
+      "citrus",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "lettuce",
+      "spinach"
+    ]
+  },
+  "South-3": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "spinach"
+    ]
+  },
+  "South-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "lettuce",
+      "tomatoes"
+    ]
+  },
+  "South-5": {
+    "fruits": [
+      "blueberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "South-6": {
+    "fruits": [
+      "peaches",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "okra",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "South-7": {
+    "fruits": [
+      "stone fruit",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "eggplant",
+      "okra",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "South-8": {
+    "fruits": [
+      "figs",
+      "grapes"
+    ],
+    "vegetables": [
+      "eggplant",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "South-9": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "South-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "greens"
+    ]
+  },
+  "South-11": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "greens"
+    ]
+  },
+  "South-12": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "cabbage",
+      "greens",
+      "sweet potatoes"
+    ]
+  },
+  "Alaska-1": {
+    "fruits": [],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "potatoes"
+    ]
+  },
+  "Alaska-2": {
+    "fruits": [],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "potatoes"
+    ]
+  },
+  "Alaska-3": {
+    "fruits": [],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Alaska-4": {
+    "fruits": [],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Alaska-5": {
+    "fruits": [],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Alaska-6": {
+    "fruits": [
+      "berries"
+    ],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Alaska-7": {
+    "fruits": [
+      "berries"
+    ],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Alaska-8": {
+    "fruits": [
+      "berries"
+    ],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Alaska-9": {
+    "fruits": [],
+    "vegetables": [
+      "carrots",
+      "potatoes"
+    ]
+  },
+  "Alaska-10": {
+    "fruits": [],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "potatoes"
+    ]
+  },
+  "Alaska-11": {
+    "fruits": [],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "potatoes"
+    ]
+  },
+  "Alaska-12": {
+    "fruits": [],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "potatoes"
+    ]
+  },
+  "Hawaii-1": {
+    "fruits": [
+      "citrus",
+      "pineapple"
+    ],
+    "vegetables": [
+      "greens",
+      "sweet potatoes"
+    ]
+  },
+  "Hawaii-2": {
+    "fruits": [
+      "citrus",
+      "pineapple"
+    ],
+    "vegetables": [
+      "greens",
+      "sweet potatoes"
+    ]
+  },
+  "Hawaii-3": {
+    "fruits": [
+      "mangoes",
+      "pineapple"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "tomatoes"
+    ]
+  },
+  "Hawaii-4": {
+    "fruits": [
+      "mangoes",
+      "pineapple"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "tomatoes"
+    ]
+  },
+  "Hawaii-5": {
+    "fruits": [
+      "mangoes"
+    ],
+    "vegetables": [
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Hawaii-6": {
+    "fruits": [
+      "mangoes"
+    ],
+    "vegetables": [
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "Hawaii-7": {
+    "fruits": [
+      "mangoes",
+      "papaya"
+    ],
+    "vegetables": [
+      "greens",
+      "sweet potatoes"
+    ]
+  },
+  "Hawaii-8": {
+    "fruits": [
+      "papaya"
+    ],
+    "vegetables": [
+      "greens",
+      "sweet potatoes"
+    ]
+  },
+  "Hawaii-9": {
+    "fruits": [
+      "pineapple"
+    ],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Hawaii-10": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Hawaii-11": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "Hawaii-12": {
+    "fruits": [
+      "citrus"
+    ],
+    "vegetables": [
+      "greens"
+    ]
+  },
+  "National-1": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "National-2": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "National-3": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "National-4": {
+    "fruits": [
+      "strawberries"
+    ],
+    "vegetables": [
+      "asparagus",
+      "lettuce",
+      "peas",
+      "radishes",
+      "spinach"
+    ]
+  },
+  "National-5": {
+    "fruits": [
+      "cherries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "beets",
+      "broccoli",
+      "lettuce",
+      "peas"
+    ]
+  },
+  "National-6": {
+    "fruits": [
+      "blueberries",
+      "strawberries"
+    ],
+    "vegetables": [
+      "cucumbers",
+      "green beans",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "National-7": {
+    "fruits": [
+      "blackberries",
+      "blueberries",
+      "peaches"
+    ],
+    "vegetables": [
+      "corn",
+      "green beans",
+      "peppers",
+      "tomatoes",
+      "zucchini"
+    ]
+  },
+  "National-8": {
+    "fruits": [
+      "grapes",
+      "peaches",
+      "watermelon"
+    ],
+    "vegetables": [
+      "corn",
+      "eggplant",
+      "peppers",
+      "tomatoes"
+    ]
+  },
+  "National-9": {
+    "fruits": [
+      "apples",
+      "grapes"
+    ],
+    "vegetables": [
+      "peppers",
+      "pumpkins",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  },
+  "National-10": {
+    "fruits": [
+      "apples",
+      "pears"
+    ],
+    "vegetables": [
+      "broccoli",
+      "cabbage",
+      "cauliflower",
+      "kale",
+      "pumpkins"
+    ]
+  },
+  "National-11": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "turnips"
+    ]
+  },
+  "National-12": {
+    "fruits": [
+      "apples"
+    ],
+    "vegetables": [
+      "cabbage",
+      "carrots",
+      "collards",
+      "kale",
+      "sweet potatoes",
+      "winter squash"
+    ]
+  }
+}

@@ -1,9 +1,9 @@
 // app/api/seasonal/route.ts
 import { NextResponse } from "next/server";
-import regionMonth from "@/data/seasonality/produce_by_region_month.json";
-import zoneMonth from "@/data/seasonality/produce_by_zone_month.json";
-import grid from "@/data/usda/zones_by_lat_lng.json";
-import { getUsdaZoneSeasonality } from "@/lib/seasonality/usdaZone";
+import regionMonth from "../../../data/seasonality/produce_by_region_month.json";
+import zoneMonth from "../../../data/seasonality/produce_by_zone_month.json";
+import grid from "../../../data/usda/zones_by_lat_lng.json";
+import { getUsdaZoneSeasonality } from "../../../lib/seasonality/usdaZone";
 
 function getByRegion(region: string, month: number) {
   return (regionMonth as any)[`${region}-${month}`] ?? { fruits: [], vegetables: [] };
