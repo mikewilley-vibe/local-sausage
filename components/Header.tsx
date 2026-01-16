@@ -15,14 +15,26 @@ export default function Header() {
           <span className="text-xl font-bold">Seasonal Sous Chef</span>
         </Link>
 
-        {!isHome && (
-          <Link
-            href="/"
-            className="px-4 py-2 bg-white text-green-600 rounded-lg font-semibold hover:bg-green-50 transition"
-          >
-            ← Back to Home
+        <nav className="flex items-center gap-6">
+          <Link href="/seasonal" className="hover:opacity-80 transition font-medium">
+            📍 Seasonal
           </Link>
-        )}
+          <Link href="/recipes" className="hover:opacity-80 transition font-medium">
+            🍳 Recipes
+          </Link>
+          <Link href="/markets" className="hover:opacity-80 transition font-medium">
+            🌾 Markets
+          </Link>
+
+          {!isHome && (
+            <Link
+              href="/"
+              className="px-4 py-2 bg-white text-green-600 rounded-lg font-semibold hover:bg-green-50 transition"
+            >
+              ← Home
+            </Link>
+          )}
+        </nav>
       </div>
     </header>
   );
