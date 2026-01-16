@@ -1,0 +1,50 @@
+{
+  "Northeast": {
+    "region": "Northeast",
+    "states": ["ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA"],
+    "specialties": ["apples", "cranberries", "blueberries", "potatoes", "lobster"],
+    "season": "Fall"
+  },
+  "Mid-Atlantic": {
+    "region": "Mid-Atlantic",
+    "states": ["DE", "MD", "VA", "WV"],
+    "specialties": ["tomatoes", "corn", "peaches", "crab", "oysters"],
+    "season": "Summer"
+  },
+  "Southeast": {
+    "region": "Southeast",
+    "states": ["NC", "SC", "GA", "FL", "AL", "MS", "LA", "AR", "TN", "KY"],
+    "specialties": ["citrus", "peaches", "strawberries", "greens", "peanuts"],
+    "season": "Winter/Spring"
+  },
+  "Midwest": {
+    "region": "Midwest",
+    "states": ["OH", "IN", "IL", "MI", "WI", "MN", "IA", "MO"],
+    "specialties": ["corn", "soybeans", "apples", "cheese", "beef"],
+    "season": "Summer/Fall"
+  },
+  "Great Plains": {
+    "region": "Great Plains",
+    "states": ["ND", "SD", "NE", "KS", "OK", "TX"],
+    "specialties": ["wheat", "cattle", "pork", "pecans", "cotton"],
+    "season": "Year-round"
+  },
+  "Southwest": {
+    "region": "Southwest",
+    "states": ["NM", "AZ", "UT", "NV"],
+    "specialties": ["chiles", "pecans", "citrus", "pumpkins", "beef"],
+    "season": "Fall/Winter"
+  },
+  "West": {
+    "region": "West",
+    "states": ["CA", "OR", "WA", "ID", "MT", "WY", "CO"],
+    "specialties": ["lettuce", "almonds", "wine grapes", "apples", "salmon"],
+    "season": "Year-round"
+  },
+  "Pacific": {
+    "region": "Pacific",
+    "states": ["HI", "AK"],
+    "specialties": ["pineapple", "coffee", "macadamia nuts", "salmon"],
+    "season": "Year-round"
+  }
+}

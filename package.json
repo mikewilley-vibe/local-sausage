@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "next": "^16.1.2",
+    "openai": "^6.16.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "scripts": {
+    "seasonality:build": "node scripts/generate-produce-by-region-month.mjs",
+    "seasonality:build-all": "node scripts/generate-all-data.mjs",
+    "seasonality:check": "node scripts/sanity-check.mjs"
+  }
+}

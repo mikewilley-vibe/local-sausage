@@ -1,0 +1,290 @@
+{
+  "3a-1": {
+    "fruits": ["dried apples", "stored pears"],
+    "vegetables": ["root vegetables", "squash", "kale"]
+  },
+  "3a-2": {
+    "fruits": ["dried berries", "stored apples"],
+    "vegetables": ["turnips", "beets", "cabbage"]
+  },
+  "3a-3": {
+    "fruits": ["early rhubarb"],
+    "vegetables": ["onions", "garlic", "potatoes"]
+  },
+  "3a-4": {
+    "fruits": ["strawberries (late)"],
+    "vegetables": ["asparagus", "peas", "lettuce"]
+  },
+  "3a-5": {
+    "fruits": ["strawberries", "early cherries"],
+    "vegetables": ["spinach", "chard", "broccoli"]
+  },
+  "3a-6": {
+    "fruits": ["raspberries", "blueberries", "cherries"],
+    "vegetables": ["beans", "peas", "zucchini", "tomatoes"]
+  },
+  "3a-7": {
+    "fruits": ["berries", "cherries", "early peaches"],
+    "vegetables": ["corn", "beans", "squash", "peppers"]
+  },
+  "3a-8": {
+    "fruits": ["peaches", "apples", "plums"],
+    "vegetables": ["tomatoes", "peppers", "eggplant", "beans"]
+  },
+  "3a-9": {
+    "fruits": ["apples", "grapes", "pears"],
+    "vegetables": ["squash", "pumpkins", "carrots", "beets"]
+  },
+  "3a-10": {
+    "fruits": ["apples", "late pears"],
+    "vegetables": ["root vegetables", "squash", "kale"]
+  },
+  "3a-11": {
+    "fruits": ["stored apples"],
+    "vegetables": ["kale", "root vegetables", "cabbage"]
+  },
+  "3a-12": {
+    "fruits": ["stored apples", "pears"],
+    "vegetables": ["turnips", "beets", "squash"]
+  },
+  "4a-1": {
+    "fruits": ["stored apples"],
+    "vegetables": ["root vegetables", "squash"]
+  },
+  "4a-2": {
+    "fruits": ["dried berries"],
+    "vegetables": ["onions", "potatoes"]
+  },
+  "4a-3": {
+    "fruits": ["early rhubarb"],
+    "vegetables": ["garlic", "asparagus"]
+  },
+  "4a-4": {
+    "fruits": ["strawberries"],
+    "vegetables": ["peas", "lettuce", "spinach"]
+  },
+  "4a-5": {
+    "fruits": ["strawberries", "cherries"],
+    "vegetables": ["beans", "broccoli", "zucchini"]
+  },
+  "4a-6": {
+    "fruits": ["raspberries", "blueberries"],
+    "vegetables": ["tomatoes", "peppers", "corn"]
+  },
+  "4a-7": {
+    "fruits": ["berries", "peaches"],
+    "vegetables": ["beans", "squash", "peppers"]
+  },
+  "4a-8": {
+    "fruits": ["apples", "plums"],
+    "vegetables": ["tomatoes", "eggplant", "peppers"]
+  },
+  "4a-9": {
+    "fruits": ["apples", "grapes"],
+    "vegetables": ["squash", "carrots", "beets"]
+  },
+  "4a-10": {
+    "fruits": ["apples"],
+    "vegetables": ["pumpkins", "squash", "kale"]
+  },
+  "4a-11": {
+    "fruits": ["stored apples"],
+    "vegetables": ["kale", "cabbage"]
+  },
+  "4a-12": {
+    "fruits": ["stored apples"],
+    "vegetables": ["root vegetables", "squash"]
+  },
+  "5a-1": {
+    "fruits": ["stored apples"],
+    "vegetables": ["root vegetables", "squash"]
+  },
+  "5a-2": {
+    "fruits": ["dried berries"],
+    "vegetables": ["potatoes", "onions"]
+  },
+  "5a-3": {
+    "fruits": ["rhubarb"],
+    "vegetables": ["asparagus", "spinach"]
+  },
+  "5a-4": {
+    "fruits": ["strawberries"],
+    "vegetables": ["lettuce", "peas", "broccoli"]
+  },
+  "5a-5": {
+    "fruits": ["strawberries", "cherries"],
+    "vegetables": ["beans", "zucchini", "tomatoes"]
+  },
+  "5a-6": {
+    "fruits": ["raspberries", "blueberries"],
+    "vegetables": ["corn", "peppers", "beans"]
+  },
+  "5a-7": {
+    "fruits": ["berries", "peaches", "apples"],
+    "vegetables": ["squash", "beans", "peppers"]
+  },
+  "5a-8": {
+    "fruits": ["apples", "pears", "plums"],
+    "vegetables": ["tomatoes", "peppers", "eggplant"]
+  },
+  "5a-9": {
+    "fruits": ["apples", "grapes", "pears"],
+    "vegetables": ["squash", "carrots", "beets"]
+  },
+  "5a-10": {
+    "fruits": ["apples"],
+    "vegetables": ["squash", "pumpkins", "kale"]
+  },
+  "5a-11": {
+    "fruits": ["stored apples"],
+    "vegetables": ["kale", "root vegetables"]
+  },
+  "5a-12": {
+    "fruits": ["stored apples"],
+    "vegetables": ["squash", "root vegetables"]
+  },
+  "6a-1": {
+    "fruits": ["stored apples"],
+    "vegetables": ["root vegetables", "squash"]
+  },
+  "6a-2": {
+    "fruits": ["dried berries"],
+    "vegetables": ["potatoes", "onions"]
+  },
+  "6a-3": {
+    "fruits": ["rhubarb"],
+    "vegetables": ["asparagus", "spinach"]
+  },
+  "6a-4": {
+    "fruits": ["strawberries"],
+    "vegetables": ["lettuce", "peas"]
+  },
+  "6a-5": {
+    "fruits": ["strawberries"],
+    "vegetables": ["beans", "zucchini", "tomatoes"]
+  },
+  "6a-6": {
+    "fruits": ["raspberries", "blueberries"],
+    "vegetables": ["corn", "peppers", "beans"]
+  },
+  "6a-7": {
+    "fruits": ["berries", "peaches"],
+    "vegetables": ["squash", "beans", "peppers"]
+  },
+  "6a-8": {
+    "fruits": ["apples", "pears", "plums"],
+    "vegetables": ["tomatoes", "peppers"]
+  },
+  "6a-9": {
+    "fruits": ["apples", "grapes"],
+    "vegetables": ["squash", "carrots"]
+  },
+  "6a-10": {
+    "fruits": ["apples"],
+    "vegetables": ["squash", "pumpkins"]
+  },
+  "6a-11": {
+    "fruits": ["stored apples"],
+    "vegetables": ["kale", "root vegetables"]
+  },
+  "6a-12": {
+    "fruits": ["stored apples"],
+    "vegetables": ["root vegetables", "squash"]
+  },
+  "7a-1": {
+    "fruits": ["stored apples"],
+    "vegetables": ["root vegetables", "squash"]
+  },
+  "7a-2": {
+    "fruits": ["dried berries"],
+    "vegetables": ["potatoes", "onions"]
+  },
+  "7a-3": {
+    "fruits": ["rhubarb"],
+    "vegetables": ["asparagus", "spinach"]
+  },
+  "7a-4": {
+    "fruits": ["strawberries"],
+    "vegetables": ["lettuce", "peas"]
+  },
+  "7a-5": {
+    "fruits": ["strawberries", "cherries"],
+    "vegetables": ["beans", "zucchini"]
+  },
+  "7a-6": {
+    "fruits": ["raspberries", "blueberries"],
+    "vegetables": ["corn", "peppers", "tomatoes"]
+  },
+  "7a-7": {
+    "fruits": ["berries", "peaches"],
+    "vegetables": ["squash", "beans", "peppers"]
+  },
+  "7a-8": {
+    "fruits": ["apples", "peaches", "plums"],
+    "vegetables": ["tomatoes", "peppers", "eggplant"]
+  },
+  "7a-9": {
+    "fruits": ["apples", "grapes", "figs"],
+    "vegetables": ["squash", "carrots", "peppers"]
+  },
+  "7a-10": {
+    "fruits": ["apples", "pears"],
+    "vegetables": ["squash", "pumpkins", "kale"]
+  },
+  "7a-11": {
+    "fruits": ["stored apples"],
+    "vegetables": ["kale", "greens"]
+  },
+  "7a-12": {
+    "fruits": ["stored apples"],
+    "vegetables": ["root vegetables", "greens"]
+  },
+  "8a-1": {
+    "fruits": ["citrus", "stored apples"],
+    "vegetables": ["greens", "root vegetables"]
+  },
+  "8a-2": {
+    "fruits": ["citrus"],
+    "vegetables": ["broccoli", "cabbage", "greens"]
+  },
+  "8a-3": {
+    "fruits": ["citrus"],
+    "vegetables": ["asparagus", "peas", "lettuce"]
+  },
+  "8a-4": {
+    "fruits": ["strawberries", "citrus"],
+    "vegetables": ["lettuce", "tomatoes", "peppers"]
+  },
+  "8a-5": {
+    "fruits": ["strawberries", "early peaches"],
+    "vegetables": ["beans", "squash", "tomatoes"]
+  },
+  "8a-6": {
+    "fruits": ["raspberries", "peaches"],
+    "vegetables": ["corn", "peppers", "beans"]
+  },
+  "8a-7": {
+    "fruits": ["peaches", "blueberries"],
+    "vegetables": ["squash", "beans", "peppers"]
+  },
+  "8a-8": {
+    "fruits": ["peaches", "apples", "figs"],
+    "vegetables": ["tomatoes", "peppers", "eggplant"]
+  },
+  "8a-9": {
+    "fruits": ["apples", "grapes", "figs"],
+    "vegetables": ["squash", "carrots", "peppers"]
+  },
+  "8a-10": {
+    "fruits": ["apples", "pears", "persimmons"],
+    "vegetables": ["squash", "pumpkins", "greens"]
+  },
+  "8a-11": {
+    "fruits": ["persimmons", "pomegranates"],
+    "vegetables": ["kale", "greens", "broccoli"]
+  },
+  "8a-12": {
+    "fruits": ["citrus"],
+    "vegetables": ["greens", "broccoli", "cabbage"]
+  }
+}
