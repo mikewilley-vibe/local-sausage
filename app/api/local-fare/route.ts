@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { openai } from "@/lib/openai";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -72,9 +73,89 @@ export async function GET(req: Request) {
       .sort((a: any, b: any) => a.distance - b.distance)
       .slice(0, 10);
 
-    return NextResponse.json({
-      restaurants: restaurants.length > 0 ? restaurants : generateSampleRestaurants(lat, lng),
-    });
+    if (restaurants.length === 0) {
+      return NextResponse.json({
+        restaurants: [],
+        message: "No restaurants found near this location. Try expanding your search radius.",
+      });
+    }
+
+    // Use LLM to analyze and rank restaurants based on review patterns
+    const restaurantsJson = JSON.stringify(restaurants, null, 2);
+    
+    try {
+      const llmResponse = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: `You are a local restaurant review analysis assistant. Your role is to analyze provided restaurant data and present a clear, trustworthy list to the user.
+
+Your top priorities are accuracy, transparency, and usefulness.
+
+Rules:
+- Use only the restaurants and review data provided.
+- Do not invent restaurant names, ratings, or review content.
+- Prioritize restaurants that are closer, have higher ratings, and meaningful review counts.
+- Avoid over-weighting popularity alone.
+
+For each restaurant, include:
+- name
+- cuisine type (if available)
+- distance from user
+- rating + review count (if available)
+- short summary of common themes from reviews (1–2 sentences max, if available)
+- notes if data is limited
+
+Return ONLY a JSON object with this structure:
+{
+  "restaurants": [
+    {
+      "name": "Restaurant Name",
+      "cuisine": "Cuisine Type",
+      "distance": 1.5,
+      "address": "Address",
+      "rating": 4.5,
+      "reviewCount": 128,
+      "summary": "Known for fresh ingredients and seasonal menu. Good atmosphere.",
+      "notes": "Data limited - only Google reviews available"
+    }
+  ],
+  "summary": "Brief summary of findings and relevance"
+}
+
+Return ONLY the JSON, no other text.`,
+          },
+          {
+            role: "user",
+            content: `Please analyze and rank these restaurant results by relevance to the user:\n\n${restaurantsJson}`,
+          },
+        ],
+        temperature: 0.5,
+        max_tokens: 1500,
+      });
+
+      const llmContent = llmResponse.choices[0]?.message?.content;
+      
+      if (!llmContent) {
+        // Fallback to unprocessed results
+        return NextResponse.json({ restaurants });
+      }
+
+      try {
+        const jsonMatch = llmContent.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          const processed = JSON.parse(jsonMatch[0]);
+          return NextResponse.json(processed);
+        }
+      } catch (e) {
+        // If LLM processing fails, return raw results
+        return NextResponse.json({ restaurants });
+      }
+    } catch (llmError) {
+      console.error("LLM processing error:", llmError);
+      // Fallback to unprocessed results
+      return NextResponse.json({ restaurants });
   } catch (error) {
     console.error("Error fetching restaurants:", error);
     return NextResponse.json({

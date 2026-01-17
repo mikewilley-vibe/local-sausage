@@ -20,6 +20,7 @@ export default function RestaurantsPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [useCoordinates, setUseCoordinates] = useState(false);
+  const [summary, setSummary] = useState('');
 
   const handleGetLocation = () => {
     setLoading(true);
@@ -60,8 +61,9 @@ export default function RestaurantsPage() {
 
       if (response.ok) {
         setRestaurants(data.restaurants || []);
+        setSummary(data.summary || '');
         if (!data.restaurants || data.restaurants.length === 0) {
-          setError('No restaurants found near this location.');
+          setError(data.message || 'No restaurants found near this location.');
         }
       } else {
         setError(data.error || 'Failed to fetch restaurants');
@@ -211,6 +213,11 @@ export default function RestaurantsPage() {
 
         {restaurants.length > 0 && (
           <div className="bg-white rounded-lg shadow-lg p-8">
+            {summary && (
+              <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-blue-900 text-sm">{summary}</p>
+              </div>
+            )}
             <h2 className="text-2xl font-bold mb-6 text-gray-800">
               {restaurants.length} Restaurant{restaurants.length !== 1 ? 's' : ''} Found
             </h2>
@@ -221,23 +228,34 @@ export default function RestaurantsPage() {
                   className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition"
                 >
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-lg font-semibold text-amber-700">{restaurant.name}</h3>
+                    <div>
+                      <h3 className="text-lg font-semibold text-amber-700">{restaurant.name}</h3>
+                      {restaurant.cuisine && (
+                        <p className="text-gray-600 text-sm">{restaurant.cuisine}</p>
+                      )}
+                    </div>
                     {restaurant.rating && (
-                      <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm font-medium">
+                      <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-sm font-medium whitespace-nowrap ml-2">
                         ⭐ {restaurant.rating.toFixed(1)}
+                        {restaurant.reviewCount && (
+                          <span className="text-xs text-gray-600 ml-1">({restaurant.reviewCount})</span>
+                        )}
                       </span>
                     )}
                   </div>
-                  <p className="text-gray-600 mb-2">{restaurant.address}</p>
-                  <div className="flex justify-between items-center">
-                    <div className="flex gap-4">
-                      <span className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
-                        {restaurant.cuisine}
-                      </span>
+                  <p className="text-gray-600 text-sm mb-3">{restaurant.address}</p>
+                  {restaurant.summary && (
+                    <p className="text-gray-700 text-sm mb-3 italic">{restaurant.summary}</p>
+                  )}
+                  <div className="flex justify-between items-center flex-wrap gap-2">
+                    <div className="flex gap-2 items-center">
                       {restaurant.distance && (
                         <span className="text-gray-500 text-sm">
-                          {restaurant.distance.toFixed(1)} miles away
+                          📍 {restaurant.distance.toFixed(1)} miles away
                         </span>
+                      )}
+                      {restaurant.notes && (
+                        <span className="text-gray-500 text-xs italic">{restaurant.notes}</span>
                       )}
                     </div>
                     {restaurant.website && (
