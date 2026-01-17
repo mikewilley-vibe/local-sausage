@@ -150,6 +150,7 @@ Return ONLY the JSON, no other text.`,
       console.error("LLM processing error:", llmError);
       // Fallback to unprocessed results
       return NextResponse.json({ markets });
+    }
   } catch (error) {
     console.error("Error fetching markets:", error);
     return NextResponse.json({
