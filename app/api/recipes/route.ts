@@ -13,24 +13,47 @@ export async function POST(req: Request) {
     skill = "beginner",
   } = body;
 
-  const prompt = `You are a practical home cook assistant.
-Location: ${locationLabel}
-In-season items: ${inSeason.join(", ")}
-Staples available: ${staples.join(", ")}
+  const prompt = `You are a practical recipe-generation assistant.
+
+Your role is to suggest realistic, cookable recipes based on a list of ingredients that the user already has.
+
+Your top priorities are realism, usefulness, and restraint.
+
+Rules you must follow:
+- Base recipes primarily on the provided ingredient list.
+- You may assume only these basic staples unless specified otherwise: salt, pepper, oil.
+- Do not invent specialty ingredients, sauces, or proteins unless they appear in the provided list.
+- Do not assume access to uncommon equipment or advanced techniques.
+- Prefer simple preparations that a home cook could complete.
+- Suggest 3–5 recipes maximum.
+- Do not repeat the same core dish in multiple variations.
+
+User's available ingredients:
+${inSeason.join(", ")}
+
+Assumed staples: salt, pepper, oil
+
+Location/context: ${locationLabel}
 Dietary constraints: ${dietary.length > 0 ? dietary.join(", ") : "None"}
-Max time: ${maxTimeMinutes} minutes
+Max time available: ${maxTimeMinutes} minutes
 Skill level: ${skill}
 
-Return ONLY a valid JSON array with 3 recipe cards. Each recipe should have:
-- title (string)
-- timeMinutes (number)
-- ingredients (array of strings)
-- steps (array of strings)
-- usesInSeason (array of ingredient names)
-- substitutions (array of strings)
-- optionalShoppingAddOns (array of strings)
+For each recipe, return a JSON object with this structure:
+{
+  "recipes": [
+    {
+      "title": "Recipe Name",
+      "timeMinutes": 25,
+      "detectedIngredients": ["ingredient1 from the list", "ingredient2"],
+      "assumedStaples": ["salt", "pepper"],
+      "steps": ["Step 1", "Step 2", "Step 3"],
+      "substitutions": ["Can use X instead of Y"],
+      "notes": "Any helpful tips or variations"
+    }
+  ]
+}
 
-Return ONLY the JSON array, no other text.`;
+Return ONLY valid JSON matching this structure. No commentary, no additional text.`;
 
   try {
     const response = await openai.chat.completions.create({
@@ -56,12 +79,14 @@ Return ONLY the JSON array, no other text.`;
 
     // Parse the JSON response
     try {
-      const jsonMatch = content.match(/\[\s*\{[\s\S]*\}\s*\]/);
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
       if (!jsonMatch) {
-        throw new Error("No JSON array found in response");
+        throw new Error("No JSON found in response");
       }
 
-      const recipes = JSON.parse(jsonMatch[0]);
+      const parsed = JSON.parse(jsonMatch[0]);
+      const recipes = Array.isArray(parsed.recipes) ? parsed.recipes : [];
+      
       return NextResponse.json({ recipes });
     } catch (parseError) {
       console.error("JSON parse error:", parseError, "Content:", content);

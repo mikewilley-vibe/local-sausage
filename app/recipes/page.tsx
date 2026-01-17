@@ -471,7 +471,7 @@ export default function RecipesPage() {
                     <div>
                       <h3 className="text-xl font-bold text-orange-700 mb-2">{recipe.title}</h3>
                       <p className="text-gray-600 font-medium mb-3">⏱️ {recipe.timeMinutes} minutes</p>
-                      <p className="text-gray-700 text-sm">📋 {recipe.ingredients?.length || 0} ingredients</p>
+                      <p className="text-gray-700 text-sm">📋 {recipe.detectedIngredients?.length || recipe.ingredients?.length || 0} ingredients</p>
                     </div>
                     <span className="text-3xl">→</span>
                   </div>
@@ -498,14 +498,44 @@ export default function RecipesPage() {
 
               <div className="mb-8">
                 <h4 className="text-lg font-bold text-gray-800 mb-4">📋 Ingredients</h4>
-                <ul className="space-y-2 text-gray-700">
-                  {recipes[selectedRecipeIndex].ingredients?.map((ing: string, i: number) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="text-orange-600 font-bold mt-1">✓</span>
-                      <span>{ing}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="space-y-4">
+                  {recipes[selectedRecipeIndex].detectedIngredients && recipes[selectedRecipeIndex].detectedIngredients.length > 0 && (
+                    <div>
+                      <p className="text-sm font-semibold text-orange-700 mb-2">From Your Inventory:</p>
+                      <ul className="space-y-2 text-gray-700 ml-2">
+                        {recipes[selectedRecipeIndex].detectedIngredients.map((ing: string, i: number) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="text-orange-600 font-bold mt-1">✓</span>
+                            <span>{ing}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {recipes[selectedRecipeIndex].assumedStaples && recipes[selectedRecipeIndex].assumedStaples.length > 0 && (
+                    <div>
+                      <p className="text-sm font-semibold text-gray-600 mb-2">Assumed Staples:</p>
+                      <ul className="space-y-2 text-gray-600 ml-2">
+                        {recipes[selectedRecipeIndex].assumedStaples.map((ing: string, i: number) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="text-gray-500 font-bold mt-1">•</span>
+                            <span>{ing}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {recipes[selectedRecipeIndex].ingredients && recipes[selectedRecipeIndex].ingredients.length > 0 && (
+                    <ul className="space-y-2 text-gray-700">
+                      {recipes[selectedRecipeIndex].ingredients.map((ing: string, i: number) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="text-orange-600 font-bold mt-1">✓</span>
+                          <span>{ing}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
 
               <div className="mb-8">
@@ -533,6 +563,13 @@ export default function RecipesPage() {
                       </li>
                     ))}
                   </ul>
+                </div>
+              )}
+
+              {recipes[selectedRecipeIndex].notes && (
+                <div className="p-5 bg-purple-50 rounded-lg border border-purple-200">
+                  <h4 className="font-bold text-purple-900 mb-3">💡 Tips & Notes</h4>
+                  <p className="text-purple-900 text-sm">{recipes[selectedRecipeIndex].notes}</p>
                 </div>
               )}
 
