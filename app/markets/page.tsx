@@ -17,6 +17,9 @@ export default function MarketsPage() {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
   const [markets, setMarkets] = useState<Market[]>([]);
+  const [farmerMarkets, setFarmerMarkets] = useState<any[]>([]);
+  const [specialtyStores, setSpecialtyStores] = useState<any[]>([]);
+  const [summary, setSummary] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [useCoordinates, setUseCoordinates] = useState(false);
@@ -59,9 +62,23 @@ export default function MarketsPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setMarkets(data.markets || []);
-        if (!data.markets || data.markets.length === 0) {
-          setError('No markets found near this location.');
+        // Check if we have the new format with farmers_markets and specialty_food_stores
+        if (data.farmers_markets || data.specialty_food_stores) {
+          setFarmerMarkets(data.farmers_markets || []);
+          setSpecialtyStores(data.specialty_food_stores || []);
+          setSummary(data.summary || '');
+          // Also set combined list for backward compatibility
+          const combined = [...(data.farmers_markets || []), ...(data.specialty_food_stores || [])];
+          setMarkets(combined);
+          if (combined.length === 0 && data.message) {
+            setError(data.message);
+          }
+        } else {
+          // Fallback to old format
+          setMarkets(data.markets || []);
+          if (!data.markets || data.markets.length === 0) {
+            setError('No markets found near this location.');
+          }
         }
       } else {
         setError(data.error || 'Failed to fetch markets');
@@ -216,8 +233,76 @@ export default function MarketsPage() {
           </div>
         )}
 
-        {/* Markets Grid */}
-        {markets.length > 0 && (
+        {/* Markets Display */}
+        {(farmerMarkets.length > 0 || specialtyStores.length > 0) && (
+          <div className="space-y-8">
+            {summary && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p className="text-blue-900 text-sm">{summary}</p>
+              </div>
+            )}
+
+            {farmerMarkets.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold text-green-700 mb-4">🌾 Farmers Markets ({farmerMarkets.length})</h2>
+                <div className="space-y-4">
+                  {farmerMarkets.map((market, idx) => (
+                    <div key={idx} className="bg-white rounded-lg shadow-md border-l-4 border-green-500 p-6 hover:shadow-lg transition">
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="text-lg font-bold text-green-700">{market.name}</h3>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-3">{market.address}</p>
+                      <div className="flex items-center gap-4">
+                        {market.distance && (
+                          <span className="text-gray-500 text-sm">
+                            📍 {market.distance.toFixed(1)} miles away
+                          </span>
+                        )}
+                        {market.notes && (
+                          <span className="text-gray-600 text-sm italic">{market.notes}</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {specialtyStores.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold text-amber-700 mb-4">🏪 Specialty Food Stores ({specialtyStores.length})</h2>
+                <div className="space-y-4">
+                  {specialtyStores.map((store, idx) => (
+                    <div key={idx} className="bg-white rounded-lg shadow-md border-l-4 border-amber-500 p-6 hover:shadow-lg transition">
+                      <div className="flex items-start justify-between mb-2">
+                        <div>
+                          <h3 className="text-lg font-bold text-amber-700">{store.name}</h3>
+                          {store.type && (
+                            <p className="text-gray-600 text-sm mt-1 capitalize">{store.type}</p>
+                          )}
+                        </div>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-3">{store.address}</p>
+                      <div className="flex items-center gap-4">
+                        {store.distance && (
+                          <span className="text-gray-500 text-sm">
+                            📍 {store.distance.toFixed(1)} miles away
+                          </span>
+                        )}
+                        {store.notes && (
+                          <span className="text-gray-600 text-sm italic">{store.notes}</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Fallback for old format */}
+        {markets.length > 0 && farmerMarkets.length === 0 && specialtyStores.length === 0 && (
           <div className="space-y-4">
             {markets.map((market, idx) => (
               <div key={idx} className="bg-white rounded-lg shadow-md border border-gray-200 p-6 hover:shadow-lg transition">
@@ -251,6 +336,13 @@ export default function MarketsPage() {
                       className="text-green-600 hover:text-green-800 font-semibold"
                     >
                       Visit →
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
                     </a>
                   )}
                 </div>

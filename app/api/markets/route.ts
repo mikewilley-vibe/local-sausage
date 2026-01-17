@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { openai } from "@/lib/openai";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -67,9 +68,88 @@ export async function GET(req: Request) {
       .sort((a, b) => a.distance - b.distance)
       .slice(0, 10);
 
-    return NextResponse.json({
-      markets: markets.length > 0 ? markets : generateSampleMarkets(lat, lng),
-    });
+    if (markets.length === 0) {
+      return NextResponse.json({
+        markets: [],
+        message: "No farmers markets found near this location. Try expanding your search radius.",
+      });
+    }
+
+    // Use LLM to process and format the results according to the local food discovery prompt
+    const resultsJson = JSON.stringify(markets, null, 2);
+    
+    try {
+      const llmResponse = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content: `You are a local food discovery assistant. Your role is to identify nearby farmers markets and specialty food stores based on location data.
+
+Your top priorities are accuracy, relevance, and user trust.
+
+Rules:
+- Use only the provided location and search results as the source of truth.
+- Do not guess or invent businesses, market names, or addresses.
+- Farmers markets: open-air or indoor markets primarily selling local produce, meat, dairy, or prepared foods.
+- Specialty food stores: shops focused on specific food categories (e.g., butcher, fishmonger, bakery, cheese shop).
+
+Return ONLY a JSON object with this structure:
+{
+  "farmers_markets": [
+    {
+      "name": "Market Name",
+      "distance": 1.5,
+      "address": "Address",
+      "category": "farmers_market",
+      "notes": "Any relevant info"
+    }
+  ],
+  "specialty_food_stores": [
+    {
+      "name": "Store Name",
+      "distance": 2.1,
+      "address": "Address",
+      "category": "specialty_food_store",
+      "type": "butcher|bakery|fishmonger|etc",
+      "notes": "Any relevant info"
+    }
+  ],
+  "summary": "Brief summary of findings"
+}
+
+Return ONLY the JSON, no other text.`,
+          },
+          {
+            role: "user",
+            content: `Please analyze these search results and classify them as farmers markets or specialty food stores:\n\n${resultsJson}`,
+          },
+        ],
+        temperature: 0.5,
+        max_tokens: 1500,
+      });
+
+      const llmContent = llmResponse.choices[0]?.message?.content;
+      
+      if (!llmContent) {
+        // Fallback to unprocessed results
+        return NextResponse.json({ markets });
+      }
+
+      try {
+        const jsonMatch = llmContent.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          const processed = JSON.parse(jsonMatch[0]);
+          return NextResponse.json(processed);
+        }
+      } catch (e) {
+        // If LLM processing fails, return raw results
+        return NextResponse.json({ markets });
+      }
+    } catch (llmError) {
+      console.error("LLM processing error:", llmError);
+      // Fallback to unprocessed results
+      return NextResponse.json({ markets });
   } catch (error) {
     console.error("Error fetching markets:", error);
     return NextResponse.json({
