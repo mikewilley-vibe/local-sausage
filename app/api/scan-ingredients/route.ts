@@ -48,32 +48,35 @@ export async function POST(req: Request) {
     const contentArray: any[] = [
       {
         type: "text",
-        text: `You are an expert kitchen assistant with extensive food knowledge. Your task is to analyze photos of kitchen items and identify EVERY food ingredient, produce item, and pantry staple visible.
+        text: `You are an ingredient-recognition assistant.
 
-IMPORTANT: Be thorough and identify as many items as possible. Look for:
-- Fresh produce (vegetables, fruits, herbs)
-- Proteins (meats, fish, poultry, tofu, nuts, legumes)
-- Dairy (milk, cheese, eggs, yogurt, butter)
-- Grains and starches (rice, pasta, bread, beans, lentils)
-- Oils, condiments, and seasonings (olive oil, vinegar, soy sauce, honey)
-- Canned and packaged goods
-- Spices and dried herbs
-- ANY recognizable food item
+Your task is to identify visible food ingredients from user-uploaded photos of fridges, pantries, countertops, groceries, or freezer contents.
 
-Return ONLY a JSON object with this exact structure:
+Your top priority is accuracy and user trust.
+
+Rules you must follow:
+- Only identify ingredients that are reasonably visible in the image.
+- Do not invent, assume, or guess ingredients that are not clearly visible.
+- Do not infer the contents of opaque or closed containers, bags, jars, drawers, or leftovers unless the contents are clearly visible or the label is legible.
+- Do not assume common items (e.g., milk, eggs, butter, oil) unless they are visible.
+- Ignore non-food objects unless they directly affect identification (e.g., glare, obstruction).
+- If the image quality limits identification, state this clearly and suggest how the photo could be improved.
+
+For this task, return ONLY a JSON object with this structure:
 {
-  "ingredients": ["item1", "item2", "item3", ...]
+  "ingredients": ["item1", "item2", "item3", ...],
+  "confidence": {
+    "item1": "high",
+    "item2": "medium",
+    "item3": "low"
+  },
+  "notes": {
+    "item2": "partially obscured",
+    "item3": "label not fully legible"
+  }
 }
 
-Requirements:
-- List each ingredient as a simple lowercase name
-- Be SPECIFIC (e.g., "bell pepper" not just "pepper", "olive oil" not just "oil")
-- Include quantity descriptors if relevant (e.g., "red bell pepper", "extra virgin olive oil")
-- Identify at least 15-25+ items per image
-- Remove duplicates
-- Include items partially visible or in background
-- Don't include packaging/containers unless they contain identifiable food
-
+Only include items in "ingredients" that you can identify. Include confidence levels and notes for transparency.
 Return ONLY the JSON, no other text.`,
       },
     ];
@@ -125,14 +128,16 @@ Return ONLY the JSON, no other text.`,
         // Filter and clean ingredients
         const cleanedIngredients = ingredients
           .map((ing: string) => ing.toLowerCase().trim())
-          .filter((ing: string) => ing.length > 1) // Allow very short items like "egg"
-          .filter((ing: string) => !ing.includes('photo') && !ing.includes('image') && !ing.includes('picture')) // Filter out photo references
-          .filter((ing: string, index: number, arr: string[]) => arr.indexOf(ing) === index); // Remove duplicates
+          .filter((ing: string) => ing.length > 1)
+          .filter((ing: string) => !ing.includes('photo') && !ing.includes('image') && !ing.includes('picture'))
+          .filter((ing: string, index: number, arr: string[]) => arr.indexOf(ing) === index);
 
         return NextResponse.json({
           ingredients: cleanedIngredients,
           imageCount: imageDataList.length,
           itemCount: cleanedIngredients.length,
+          confidence: parsed.confidence || {},
+          notes: parsed.notes || {},
         });
       } catch (parseError) {
         // If JSON parsing fails, try to extract ingredients from the text with better logic
